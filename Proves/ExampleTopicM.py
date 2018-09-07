@@ -59,3 +59,11 @@ lda = LatentDirichletAllocation(n_components=no_topics, max_iter=5, learning_met
 no_top_words = 10
 display_topics(nmf, tfidf_feature_names, no_top_words)
 display_topics(lda, tf_feature_names, no_top_words)
+
+text = "S'han detectat interrupcions degut a incidencies. Accident a Torredembarra."
+# NMF
+y = nmf.transform(tfidf_vectorizer.transform([text]))[0]
+print(y)
+# LDA
+x = lda.transform(tf_vectorizer.transform([text]))[0]
+print(x)
