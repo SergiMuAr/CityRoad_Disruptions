@@ -16,8 +16,9 @@ csvFile = open('resultsTransit2.csv', 'a')
 #Use csv writer
 csvWriter = csv.writer(csvFile)
 
-for tweet in tweepy.Cursor(api.user_timeline, screen_name='@transit').items():
+
+for status in tweepy.Cursor(api.user_timeline, screen_name='@transit', tweet_mode = 'extended').items(500):
     # Write a row to the CSV file. I use encode UTF-8
-    csvWriter.writerow([tweet.created_at, tweet.text])
-    print (tweet.created_at, tweet.text)
+    # csvWriter.writerow([tweet.created_at, tweet.text])
+    print (status.full_text)
 csvFile.close()
