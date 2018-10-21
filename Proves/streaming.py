@@ -11,14 +11,22 @@ print (api)
 #     print (status._json['text'])
 
 # Open/create a file to append data to
-csvFile = open('resultsTransit2.csv', 'a')
+csvFile = open('resultsTransitComplete1.csv', 'a')
 
 #Use csv writer
 csvWriter = csv.writer(csvFile)
 
-
-for status in tweepy.Cursor(api.user_timeline, screen_name='@transit', tweet_mode = 'extended').items(500):
-    # Write a row to the CSV file. I use encode UTF-8
-    # csvWriter.writerow([tweet.created_at, tweet.text])
-    print (status.full_text)
+# # Els RT's no els retorna sencers moltes vegades
+# for status in tweepy.Cursor(api.user_timeline, screen_name='@transit', tweet_mode = 'extended').items(500):
+#     # Write a row to the CSV file. I use encode UTF-8
+#     # csvWriter.writerow([tweet.created_at, tweet.text])
+#     print (status.full_text)
+# csvFile.close()
+for tweet_info in tweepy.Cursor(api.user_timeline, screen_name='@transit', tweet_mode='extended').items(500):
+    if 'retweeted_status' in dir(tweet_info):
+        tweet=tweet_info.retweeted_status.full_text
+    else:
+        tweet=tweet_info.full_text
+    print (tweet)
+    csvWriter.writerow([tweet])
 csvFile.close()
