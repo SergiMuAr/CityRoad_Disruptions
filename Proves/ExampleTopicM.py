@@ -1,35 +1,23 @@
-import tweepy
-auth = tweepy.OAuthHandler("Hdah781zeulKrfrMzK3iI6GTs", "tFLvGas5hrXwq4yiXheQj5On99VUoAl5Fpcl6vRQqatjxISFDZ")
-auth.set_access_token("988457597241118720-NIGfC9gqlNakSIcmDZfVAvb5LZHDgqa", "SyoofoDP3GJsDhRFHdjjsIMAFLp2XwBYXakVyUhb3YvAE")
-
-api = tweepy.API(auth)
-
-print (api)
-
-# for status in tweepy.Cursor(api.user_timeline, screen_name='@transit').items():
-#     print (status._json['text'])
+import csv
 
 tlist = []
-it = 0
-for tweet in tweepy.Cursor(api.user_timeline, screen_name='@transit').items():
-    # Write a row to the CSV file. I use encode UTF-8
-    # print (tweet.created_at, tweet.text)
-    tlist.append(tweet.text)
-    it = it+1
-    if it > 50: 
-        break
+with open('resultsPreprocess.csv') as f:
+  reader = csv.reader(f)
 
-print (tlist)
-
+  for row in reader:
+          tlist.append(row)
+          
+print (tlist[0])
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 
 def display_topics(model, feature_names, no_top_words):
     for topic_idx, topic in enumerate(model.components_):
-        print "Topic %d:" % (topic_idx)
-        print " ".join([feature_names[i]
-                        for i in topic.argsort()[:-no_top_words - 1:-1]])
+        print ("Topic:")
+        print (topic_idx)
+        print (" ".join([feature_names[i]
+                        for i in topic.argsort()[:-no_top_words - 1:-1]]))
 
 no_features = 20
 
@@ -63,26 +51,26 @@ display_topics(lda, tf_feature_names, no_top_words)
 text = "S'han detectat interrupcions degut a incidencies. Accident a Torredembarra."
 # NMF
 y = nmf.transform(tfidf_vectorizer.transform([text]))[0]
-print "Pel primer text, NMF es: ", y 
+print ("Pel primer text, NMF es: ", y) 
 # LDA
 x = lda.transform(tf_vectorizer.transform([text]))[0]
-print "Pel primer text, LDA es: ", x 
+print ("Pel primer text, LDA es: ", x )
 
 text2 = "Exemple dun tweet que no te res a veure amb el tema i espero que no generi correlacions amb topics entrenats."
 # NMF
 y = nmf.transform(tfidf_vectorizer.transform([text2]))[0]
-print "Pel segon text, NMF es: ", y 
+print ("Pel segon text, NMF es: ", y )
 # LDA
 x = lda.transform(tf_vectorizer.transform([text2]))[0]
-print "Pel segon text, LDA es: ", x
+print ("Pel segon text, LDA es: ", x)
 
-text3 = "la https en aturades ronda dalt diagonal les el accident transit tram hi km del retencions rt aquest al ha"
-# NMF
-y = nmf.transform(tfidf_vectorizer.transform([text3]))[0]
-print "Pel tercer text, NMF es: ", y 
-# LDA
-x = lda.transform(tf_vectorizer.transform([text3]))[0]
-print "Pel tercer text, LDA es: ", x
+# text3 = "la https en aturades ronda dalt diagonal les el accident transit tram hi km del retencions rt aquest al ha"
+# # NMF
+# y = nmf.transform(tfidf_vectorizer.transform([text3]))[0]
+# print "Pel tercer text, NMF es: ", y 
+# # LDA
+# x = lda.transform(tf_vectorizer.transform([text3]))[0]
+# print "Pel tercer text, LDA es: ", x
 
 
 

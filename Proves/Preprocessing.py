@@ -1,15 +1,17 @@
 import csv
 import string
 import nltk
-import stop_words
+# import stop_words
 from nltk import sent_tokenize
 from nltk.tokenize.toktok import ToktokTokenizer
 
+# Open/create a file to append data to
+csvFile = open('resultsPreprocess.csv', 'a')
+csvWriter = csv.writer(csvFile)
 
 with open('resultsTransitComplete1.csv') as f:
   reader = csv.reader(f)
-  i = 10
-  for row in reader:
+    for row in reader:
     # print (row[1])
     # sentences = sent_tokenize(row[1])
     # print sentences
@@ -39,7 +41,6 @@ with open('resultsTransitComplete1.csv') as f:
     from nltk.stem.porter import PorterStemmer
     porter = PorterStemmer()
     stemmed = [porter.stem(word) for word in words]
-    print(stemmed)
-    
-    if (i<0): break
-    else: i = i-1
+    csvWriter.writerow([stemmed])
+
+csvFile.close()   
