@@ -11,7 +11,7 @@ csvWriter = csv.writer(csvFile)
 
 with open('resultsTransitComplete1.csv') as f:
   reader = csv.reader(f)
-    for row in reader:
+  for row in reader:
     # print (row[1])
     # sentences = sent_tokenize(row[1])
     # print sentences
@@ -41,6 +41,6 @@ with open('resultsTransitComplete1.csv') as f:
     from nltk.stem.porter import PorterStemmer
     porter = PorterStemmer()
     stemmed = [porter.stem(word) for word in words]
-    csvWriter.writerow([stemmed])
+    csvWriter.writerow(stemmed)
 
 csvFile.close()   

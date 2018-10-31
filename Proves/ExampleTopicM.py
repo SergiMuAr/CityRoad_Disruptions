@@ -5,7 +5,8 @@ with open('resultsPreprocess.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:
-          tlist.append(row)
+        tlist.append(''.join(row))
+
           
 print (tlist[0])
 
@@ -19,7 +20,7 @@ def display_topics(model, feature_names, no_top_words):
         print (" ".join([feature_names[i]
                         for i in topic.argsort()[:-no_top_words - 1:-1]]))
 
-no_features = 20
+no_features = 1000
 
 # NMF is able to use tf-idf (term frequency, inverse document frequency)
 tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=2, max_features=no_features, stop_words='english')
