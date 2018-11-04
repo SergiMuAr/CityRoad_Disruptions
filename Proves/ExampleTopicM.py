@@ -23,9 +23,9 @@ def display_topics(model, feature_names, no_top_words):
 no_features = 1000
 
 # NMF is able to use tf-idf (term frequency, inverse document frequency)
-tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=2, max_features=no_features, stop_words='english')
-tfidf = tfidf_vectorizer.fit_transform(tlist)
-tfidf_feature_names = tfidf_vectorizer.get_feature_names()
+# tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=2, max_features=no_features, stop_words='english')
+# tfidf = tfidf_vectorizer.fit_transform(tlist)
+# tfidf_feature_names = tfidf_vectorizer.get_feature_names()
 # import numpy as np
 # from sklearn.decomposition import NMF
 # model = NMF(n_components=2, init='random', random_state=0)
@@ -40,30 +40,34 @@ tf_feature_names = tf_vectorizer.get_feature_names()
 no_topics = 5
 
 # Run NMF
-nmf = NMF(n_components=no_topics, random_state=1, alpha=.1, l1_ratio=.5, init='nndsvd').fit(tfidf)
+# nmf = NMF(n_components=no_topics, random_state=1, alpha=.1, l1_ratio=.5, init='nndsvd').fit(tfidf)
 
 # Run LDA
 lda = LatentDirichletAllocation(n_components=no_topics, max_iter=5, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
 
 no_top_words = 20
-display_topics(nmf, tfidf_feature_names, no_top_words)
+# display_topics(nmf, tfidf_feature_names, no_top_words)
 display_topics(lda, tf_feature_names, no_top_words)
 
 text = "S'han detectat interrupcions degut a incidencies. Accident a Torredembarra."
-# NMF
-y = nmf.transform(tfidf_vectorizer.transform([text]))[0]
-print ("Pel primer text, NMF es: ", y) 
+# # NMF
+# y = nmf.transform(tfidf_vectorizer.transform([text]))[0]
+# print ("Pel primer text, NMF es: ", y) 
 # LDA
 x = lda.transform(tf_vectorizer.transform([text]))[0]
 print ("Pel primer text, LDA es: ", x )
 
 text2 = "Exemple dun tweet que no te res a veure amb el tema i espero que no generi correlacions amb topics entrenats."
-# NMF
-y = nmf.transform(tfidf_vectorizer.transform([text2]))[0]
-print ("Pel segon text, NMF es: ", y )
+# # NMF
+# y = nmf.transform(tfidf_vectorizer.transform([text2]))[0]
+# print ("Pel segon text, NMF es: ", y )
 # LDA
 x = lda.transform(tf_vectorizer.transform([text2]))[0]
 print ("Pel segon text, LDA es: ", x)
+
+text3 = "pluja seguretat distància velocitat augmenta recorda consel carretera inuncat vehicl 15 aigua protecciocivil precaució modera prudència meteocat transit intensitat visibilitat"
+x = lda.transform(tf_vectorizer.transform([text3]))[0]
+print ("Pel tercer text, LDA es: ", x)
 
 # text3 = "la https en aturades ronda dalt diagonal les el accident transit tram hi km del retencions rt aquest al ha"
 # # NMF
