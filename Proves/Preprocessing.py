@@ -38,9 +38,18 @@ with open('resultsTransitComplete1.csv') as f:
     words = [w for w in words if not w in stop_words]
 
     # Stemming
-    from nltk.stem.porter import PorterStemmer
-    porter = PorterStemmer()
-    stemmed = [porter.stem(word) for word in words]
-    csvWriter.writerow(stemmed)
+    # from nltk.stem.porter import PorterStemmer
+    # porter = PorterStemmer()
+    # stemmed = [porter.stem(word) for word in words]
+    # csvWriter.writerow(stemmed)
+    # print (w for w in words)
+    # print (words)
+
+    # en comptes de run hauré de fer un open-wait perque sino estic obrint i tancant procés per cada paraula.
+    from subprocess import run, PIPE
+    for w in words:  
+      p = run(['/home/sergi/snowball/stemwords', '-l', 'catalan'], stdout=PIPE,
+              input=w, encoding='utf-8')
+      print(p.stdout)
 
 csvFile.close()   
