@@ -2,15 +2,16 @@ import csv
 import string
 import nltk
 import re
-# import stop_words
 from nltk import sent_tokenize
 from nltk.tokenize.toktok import ToktokTokenizer
 from nltk.tokenize import TweetTokenizer
 
+# Open/create a file to append data to
+csvFile = open('resultsPreprocess.csv', 'a')
+csvWriter = csv.writer(csvFile)
 
 with open('resultsTransitComplete1.csv') as f:
   reader = csv.reader(f)
-  i = 10
   for row in reader:
     # print (row[1])
     # sentences = sent_tokenize(row[1])
@@ -51,8 +52,15 @@ with open('resultsTransitComplete1.csv') as f:
     # from nltk.stem.porter import PorterStemmer
     # porter = PorterStemmer()
     # stemmed = [porter.stem(word) for word in words]
-    # print(stemmed)
-    
-    
-    if (i<0): break
-    else: i = i-1
+    # csvWriter.writerow(stemmed)
+    # print (w for w in words)
+    # print (words)
+
+    # en comptes de run hauré de fer un open-wait perque sino estic obrint i tancant procés per cada paraula.
+    from subprocess import run, PIPE
+    for w in words:  
+      p = run(['/home/sergi/snowball/stemwords', '-l', 'catalan'], stdout=PIPE,
+              input=w, encoding='utf-8')
+      print(p.stdout)
+
+csvFile.close()   

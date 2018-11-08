@@ -11,7 +11,7 @@ print (api)
 #     print (status._json['text'])
 
 # Open/create a file to append data to
-csvFile = open('resultsTransitComplete1.csv', 'a')
+csvFile = open('resultsEquipViari.csv', 'a')
 
 #Use csv writer
 csvWriter = csv.writer(csvFile)
@@ -22,7 +22,7 @@ csvWriter = csv.writer(csvFile)
 #     # csvWriter.writerow([tweet.created_at, tweet.text])
 #     print (status.full_text)
 # csvFile.close()
-for tweet_info in tweepy.Cursor(api.user_timeline, screen_name='@transit', tweet_mode='extended').items(500):
+for tweet_info in tweepy.Cursor(api.user_timeline, screen_name='@equipviari', tweet_mode='extended').items(500):
     if 'retweeted_status' in dir(tweet_info):
         tweet=tweet_info.retweeted_status.full_text
     else:
