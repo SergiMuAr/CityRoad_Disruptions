@@ -1,7 +1,7 @@
 import csv
 
 tlist = []
-with open('stemmed.csv') as f:
+with open('TrainingDataSet/stemmed.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:
@@ -37,22 +37,32 @@ no_top_words = 20
 # display_topics(nmf, tfidf_feature_names, no_top_words)
 display_topics(lda, tf_feature_names, no_top_words)
 
-text = "S'han detectat interrupcions degut a incidencies. Accident a Torredembarra."
 
-# LDA
-x = lda.transform(tf_vectorizer.transform([text]))[0]
-print ("Pel primer text, LDA es: ", x )
 
-text2 = "Exemple dun tweet que no te res a veure amb el tema i espero que no generi correlacions amb topics entrenats."
+# text = "S'han detectat interrupcions degut a incidencies. Accident a Torredembarra."
 
-# LDA
-x = lda.transform(tf_vectorizer.transform([text2]))[0]
-print ("Pel segon text, LDA es: ", x)
+# # LDA
+# x = lda.transform(tf_vectorizer.transform([text]))[0]
+# print ("Pel primer text, LDA es: ", x )
 
-text3 = "pluja seguretat distància velocitat augmenta recorda consel carretera inuncat vehicl 15 aigua protecciocivil precaució modera prudència meteocat transit intensitat visibilitat"
-x = lda.transform(tf_vectorizer.transform([text3]))[0]
-print ("Pel tercer text, LDA es: ", x)
+# text2 = "Exemple dun tweet que no te res a veure amb el tema i espero que no generi correlacions amb topics entrenats."
 
+# # LDA
+# x = lda.transform(tf_vectorizer.transform([text2]))[0]
+# print ("Pel segon text, LDA es: ", x)
+
+# text3 = "pluja seguretat distància velocitat augmenta recorda consel carretera inuncat vehicl 15 aigua protecciocivil precaució modera prudència meteocat transit intensitat visibilitat"
+# x = lda.transform(tf_vectorizer.transform([text3]))[0]
+# print ("Pel tercer text, LDA es: ", x)
+
+with open('JocsDeProves/testDataSet.csv') as f:
+        reader = csv.reader(f)
+        i = 1
+        for row in reader:
+                text = ','.join(row)
+                x = lda.transform(tf_vectorizer.transform([text]))[0]
+                print ("Pel text ", i,", LDA es: ", x)
+                i = i+1
 
 
 # Crec que està fallant perque no està agafant bé el text a vectoritzar -> [text][0]
