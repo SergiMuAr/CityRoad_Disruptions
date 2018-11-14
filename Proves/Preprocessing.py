@@ -5,10 +5,10 @@ import stop_words
 from nltk import sent_tokenize
 from nltk.tokenize.toktok import ToktokTokenizer
 
-csvFile = open('resultsPreprocess.csv', 'w')
+csvFile = open('JocsDeProves/testPreprocess.csv', 'w')
 csvWriter = csv.writer(csvFile)
 
-with open('trainingDataSet.csv') as f:
+with open('JocsDeProves/testDataSet.csv') as f:
   reader = csv.reader(f)
   for row in reader:
     # print (row[1])
