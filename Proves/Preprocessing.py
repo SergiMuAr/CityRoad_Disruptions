@@ -5,10 +5,11 @@ import stop_words
 from nltk import sent_tokenize
 from nltk.tokenize.toktok import ToktokTokenizer
 
+csvFile = open('resultsPreprocess.csv', 'w')
+csvWriter = csv.writer(csvFile)
 
-with open('resultsTransitComplete1.csv') as f:
+with open('trainingDataSet.csv') as f:
   reader = csv.reader(f)
-  i = 10
   for row in reader:
     # print (row[1])
     # sentences = sent_tokenize(row[1])
@@ -75,5 +76,12 @@ with open('resultsTransitComplete1.csv') as f:
     #   for a in [ u'salió', u'usuarios', u'abofeteéis', u'diferenciando', u'diferenciándola' ]:
     #       print(lemmatize(a))
     
-    if (i<0): break
-    else: i = i-1
+    csvWriter.writerow(words)
+   
+csvFile.close()
+
+# Stemmer
+# import subprocess
+# args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "resultsPreprocess.csv", "-o", "stemmed.csv")
+# popen = subprocess.Popen(args, stdout=subprocess.PIPE)
+# popen.wait()
