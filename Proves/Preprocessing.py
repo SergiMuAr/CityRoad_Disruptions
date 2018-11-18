@@ -81,7 +81,7 @@ with open('JocsDeProves/testDataSet.csv') as f:
 csvFile.close()
 
 # Stemmer
-# import subprocess
-# args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "resultsPreprocess.csv", "-o", "stemmed.csv")
-# popen = subprocess.Popen(args, stdout=subprocess.PIPE)
-# popen.wait()
+import subprocess
+args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "resultsPreprocess.csv", "-o", "stemmed.csv")
+popen = subprocess.Popen(args, stdout=subprocess.PIPE)
+popen.wait()
