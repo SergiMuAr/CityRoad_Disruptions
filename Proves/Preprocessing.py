@@ -1,14 +1,13 @@
 import csv
 import string
 import nltk
-import stop_words
 from nltk import sent_tokenize
 from nltk.tokenize.toktok import ToktokTokenizer
 
-csvFile = open('JocsDeProves/testPreprocess.csv', 'w')
+csvFile = open('TrainingDataSet/preprocessTraining.csv', 'w')
 csvWriter = csv.writer(csvFile)
 
-with open('JocsDeProves/testDataSet.csv') as f:
+with open('TrainingDataSet/trainingDataSet.csv') as f:
   reader = csv.reader(f)
   for row in reader:
     # print (row[1])
@@ -20,11 +19,12 @@ with open('JocsDeProves/testDataSet.csv') as f:
     from nltk.tokenize.toktok import ToktokTokenizer
     toktok = ToktokTokenizer()
     tokens = toktok.tokenize(row)
+    words = tokens
     table = str.maketrans('', '', string.punctuation)
     words = [w.translate(table) for w in tokens]
 
     # Filter only if word is alphabetic characters only. (fer que AP-7 també estigui acceptat -> guions i numeros)
-    words = [word for word in words if word.isalnum()]
+    # words = [word for word in words if word.isalnum()]
     # print ("AIXÒ SÓN WORDS FINALS:")
     # words (words)
     #convert to lowercase
@@ -82,6 +82,6 @@ csvFile.close()
 
 # Stemmer
 import subprocess
-args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "resultsPreprocess.csv", "-o", "stemmed.csv")
+args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmed2.csv")
 popen = subprocess.Popen(args, stdout=subprocess.PIPE)
 popen.wait()

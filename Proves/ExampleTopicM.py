@@ -1,7 +1,7 @@
 import csv
 
 tlist = []
-with open('TrainingDataSet/stemmed.csv') as f:
+with open('TrainingDataSet/stemmed2.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:
@@ -20,7 +20,7 @@ def display_topics(model, feature_names, no_top_words):
         print (" ".join([feature_names[i]
                         for i in topic.argsort()[:-no_top_words - 1:-1]]))
 
-no_features = 1000
+no_features = 100
 
 
 # LDA can only use raw term counts for LDA because it is a probabilistic graphical model
@@ -28,12 +28,12 @@ tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, max_features=no_features,
 tf = tf_vectorizer.fit_transform(tlist)
 tf_feature_names = tf_vectorizer.get_feature_names()
 
-no_topics = 5
+no_topics = 3
 
 # Run LDA
 lda = LatentDirichletAllocation(n_components=no_topics, max_iter=5, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
 
-no_top_words = 20
+no_top_words = 5
 # display_topics(nmf, tfidf_feature_names, no_top_words)
 display_topics(lda, tf_feature_names, no_top_words)
 
