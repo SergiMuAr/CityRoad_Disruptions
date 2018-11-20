@@ -1,31 +1,31 @@
-2,carrils,tallats,ap7,celoni,➡,girona,vehicle,incendiat
-queda,tallada,⛔c12,tortosa,fan,desviaments,senyalitzats
-⛔c12,tortosa,desviaments,❗pas,alternatiu,tp3311,galera
+2,carrils,tallats,ap7,celoni,,girona,vehicle,incendiat
+queda,tallada,c12,tortosa,fan,desviaments,senyalitzats
+c12,tortosa,desviaments,pas,alternatiu,tp3311,galera
 normalitzat,circulacio,tv3421
-c25,1,carril,tallat,coloma,farners,➡,vic,avaria,vehicle
-c17,1,carril,tallat,montcada,reixac,➡,vic,accident
-⛔,c12,tortosa,desviaments,senyalitzats
-⛔,tv3421,roquetes,barberans
-⛔,t331,ulldecona,freginals
-⛔,t3311,galera,➡,senia
-⛔,n340,alcanar,➡,amposta
-⛔,c12,amposta,➡,tortosa
-⛔,tv3318,ullcedona,➡,alcanar
-⛔,t331,ulldecona,➡,barbara
-⛔,t332,ulldecona,➡,vinaros
-🚙🚗,retencions,tv3313,ulldecona,➡,galera
-⛔,terresebre,tallades,transit,inundacions,tv3318,alcanar
+c25,1,carril,tallat,coloma,farners,,vic,avaria,vehicle
+c17,1,carril,tallat,montcada,reixac,,vic,accident
+c12,tortosa,desviaments,senyalitzats
+tv3421,roquetes,barberans
+t331,ulldecona,freginals
+t3311,galera,,senia
+n340,alcanar,,amposta
+c12,amposta,,tortosa
+tv3318,ullcedona,,alcanar
+t331,ulldecona,,barbara
+t332,ulldecona,,vinaros
+,retencions,tv3313,ulldecona,,galera
+,terresebre,tallades,transit,inundacions,tv3318,alcanar
 t331,direccio,barbara
 t332,direccio,vinaros
-🚙🚗,retencions,c12,tortosa,tv3313,ulldecona,direccio,galera
+,retencions,c12,tortosa,tv3313,ulldecona,direccio,galera
 eviteu,mobilitat,montsia,ebre,properes,fent,serveis,vehicles,atrapats,acumulacio,aigua,carreteres,protecciocivil,alerta,inuncat
-⚠,accident,c58,talla,carril,sabadell,➡,terrassa,transitc58,httpstcokn41g7zb93
+,accident,c58,talla,carril,sabadell,,terrassa,transitc58,httpstcokn41g7zb93
 protecciocivil,gencat,demana,evitar,mobilitat,montsia,baixebre,properes
-⚠🚙🚛🚗,obert,carril,tallat,c58,accident,sant,quirze,valles,sentit,sudn⚠,accident,c58,sant,quirze,valles,direccio,barcelona,talla,carril,transitc58,httpstcolkt5hdfjaln⚠️🚗🚚,embus,ap7,sant,cugat,santa,perpetua,gt,girona,topada,’,camio,turismes,carril,tallat,aturats,santa,perpetua,gt,sud,afecta,b30,equipviarin⚠️🚗,aturats,ap7,altura,barbera,sentit,girona,accident,santa,perpetuagt,girona,equipviari,httpstcohgthshjm5qn🚙🔴,congestio,c58,cerdanyola,c33,montcada,equipviarin⚠️🚗,embus,ap7,sant,cugat,santa,perpetua,gt,girona,accident,talla,cua,santa,perpetua,gt,sud,afecta,b30,equipviarin✅,retirats,vehicles,accidentats,ronda,esplugues,gt,trinitat,millora,circulacio,equipviarin🚆,talgo,694,sevillaestacio,frança,acumula,’,retard,incidencia,tecnica,limitacions,velocitat,equipviarin⚠️🚗,cua,ronda,esplugues,gt,trinitat,accident,afecta,b23,sant,just,desvern,esplugues,gt,ronda
-➡️,retencions,ronda,litoral,zona,franca,can,tunis,gt,besos,equipviari
-🚙,continuen,cues,n🚧,c17,llagosta,montcada,gt,bcn,obres,b24,cervello,n340,vallirana,gt,tarragona,nc14,montblanc,pira,nc65,llambilles,banda,banda,equipviari
-🚙,aturats,nap7,sant,perpetua,barbera,rubi,papiol,gt,sud,b23,molins,papiol,gt,girona,nc1413,antiga,papiol,sant,cugat,b30,barbera,gt,sud,cerdanyola,gt,nord,nc58,sant,quirze,gt,sud,equipviari
-🚙,retencio,b22,entrada,t1,aeroport,prat,afecta,c31,sud,gt,tarragona,equipviari
-⚠️🚗,cua,ronda,nus,llobregat,esplugues,gt,trinitat,accident,afecta,b23,sant,just,desvern,esplugues,gt,ronda,equipviari
-⚠️🚚🚚,topada,camions,implicats,b142,altura,rotonda,polinya,cues,equipviari
-🚙,cues,🚧,a2,sant,vicenç,dels,horts,gt,lleida,obres,b23,molins,’,ap7,papiol,gt,girona
+,obert,carril,tallat,c58,accident,sant,quirze,valles,sentit,sudn,accident,c58,sant,quirze,valles,direccio,barcelona,talla,carril,transitc58,httpstcolkt5hdfjaln,embus,ap7,sant,cugat,santa,perpetua,gt,girona,topada,’,camio,turismes,carril,tallat,aturats,santa,perpetua,gt,sud,afecta,b30,equipviarin,aturats,ap7,altura,barbera,sentit,girona,accident,santa,perpetuagt,girona,equipviari,httpstcohgthshjm5qn,congestio,c58,cerdanyola,c33,montcada,equipviarin,embus,ap7,sant,cugat,santa,perpetua,gt,girona,accident,talla,cua,santa,perpetua,gt,sud,afecta,b30,equipviarin,retirats,vehicles,accidentats,ronda,esplugues,gt,trinitat,millora,circulacio,equipviarin,talgo,694,sevillaestacio,frança,acumula,’,retard,incidencia,tecnica,limitacions,velocitat,equipviarin,cua,ronda,esplugues,gt,trinitat,accident,afecta,b23,sant,just,desvern,esplugues,gt,ronda
+,retencions,ronda,litoral,zona,franca,can,tunis,gt,besos,equipviari
+,continuen,cues,n,c17,llagosta,montcada,gt,bcn,obres,b24,cervello,n340,vallirana,gt,tarragona,nc14,montblanc,pira,nc65,llambilles,banda,banda,equipviari
+,aturats,nap7,sant,perpetua,barbera,rubi,papiol,gt,sud,b23,molins,papiol,gt,girona,nc1413,antiga,papiol,sant,cugat,b30,barbera,gt,sud,cerdanyola,gt,nordnc58,sant,quirze,gt,sud,equipviari
+,retencio,b22,entrada,t1,aeroport,prat,afecta,c31,sud,gt,tarragona,equipviari
+,cua,ronda,nus,llobregat,esplugues,gt,trinitat,accident,afecta,b23,sant,just,desvern,esplugues,gt,ronda,equipviari
+,topada,camions,implicats,b142,altura,rotonda,polinya,cues,equipviari
+,cues,,a2,sant,vicenç,dels,horts,gt,lleida,obres,b23,molins,’,ap7,papiol,gt,girona
