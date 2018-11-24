@@ -1,6 +1,8 @@
 import csv
 import string
 import nltk
+import re
+
 from nltk import sent_tokenize
 from nltk.tokenize.toktok import ToktokTokenizer
 
@@ -17,7 +19,8 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
     # Tokenize tweets. Word splitting.
     from nltk.tokenize.toktok import ToktokTokenizer
     toktok = ToktokTokenizer()
-    tokens = toktok.tokenize(''.join(row).rstrip())
+    row = re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', '', ''.join(row).rstrip(), flags=re.MULTILINE)
+    tokens = toktok.tokenize(row)
     words = tokens
     table = str.maketrans('', '', string.punctuation)
     words = [w.translate(table) for w in tokens]
@@ -31,7 +34,6 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
 
 
     from stopwords_ca import get_stopwords 
-    import re
     emoji_pattern = re.compile("["
                         u"\U0001F600-\U0001F64F"  # emoticons
                         u"\U0001F300-\U0001F5FF"  # symbols & pictographs
