@@ -33,7 +33,7 @@ no_topics = 3
 # Run LDA
 lda = LatentDirichletAllocation(n_components=no_topics, max_iter=5, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
 
-no_top_words = 5
+no_top_words = 10
 # display_topics(nmf, tfidf_feature_names, no_top_words)
 display_topics(lda, tf_feature_names, no_top_words)
 

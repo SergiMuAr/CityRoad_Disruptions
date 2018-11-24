@@ -14,11 +14,10 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
     # sentences = sent_tokenize(row[1])
     # print sentences
     # print "ESPAAAAAAI"
-
     # Tokenize tweets. Word splitting.
     from nltk.tokenize.toktok import ToktokTokenizer
     toktok = ToktokTokenizer()
-    tokens = toktok.tokenize(row)
+    tokens = toktok.tokenize(''.join(row).rstrip())
     words = tokens
     table = str.maketrans('', '', string.punctuation)
     words = [w.translate(table) for w in tokens]
@@ -32,9 +31,18 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
 
 
     from stopwords_ca import get_stopwords 
+    import re
+    emoji_pattern = re.compile("["
+                        u"\U0001F600-\U0001F64F"  # emoticons
+                        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                        u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                        u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                        u"\U00002702-\U000027B0"
+                        u"\U000024C2-\U0001F251"
+                        "]+", flags=re.UNICODE)
     # hem agafat els stop_words de http://latel.upf.edu/morgana/altres/pub/ca_stop.htm (ens hem fet la nostra propia funció)
     stop_words = get_stopwords()
-    words = [w for w in words if not w in stop_words]
+    words = [emoji_pattern.sub(r'', w) for w in words if not w in stop_words] # NO EMOJI
 
     # Stemming
     # from nltk.stem.porter import PorterStemmer
@@ -78,16 +86,7 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
     
     # Treure ascii
     # words = [w.encode('ascii', 'ignore').decode('ascii') for w in words]
-    import re
-    emoji_pattern = re.compile("["
-                        u"\U0001F600-\U0001F64F"  # emoticons
-                        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-                        u"\U0001F680-\U0001F6FF"  # transport & map symbols
-                        u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
-                        u"\U00002702-\U000027B0"
-                        u"\U000024C2-\U0001F251"
-                        "]+", flags=re.UNICODE)
-    words = [emoji_pattern.sub(r'', w) for w in words] # no emoji
+
 
     csvWriter.writerow(words)
    
