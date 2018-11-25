@@ -24,14 +24,14 @@ no_features = 100
 
 
 # LDA can only use raw term counts for LDA because it is a probabilistic graphical model
-tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, max_features=no_features, stop_words='english')
+tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, max_features=no_features)
 tf = tf_vectorizer.fit_transform(tlist)
 tf_feature_names = tf_vectorizer.get_feature_names()
 
-no_topics = 3
+no_topics = 2
 
 # Run LDA
-lda = LatentDirichletAllocation(n_components=no_topics, max_iter=5, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
+lda = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=7).fit(tf)
 
 no_top_words = 10
 # display_topics(nmf, tfidf_feature_names, no_top_words)
