@@ -1,7 +1,7 @@
 import csv
 
 tlist = []
-with open('TrainingDataSet/stemmed2.csv') as f:
+with open('TrainingDataSet/stemmedBFN.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:
@@ -31,7 +31,7 @@ tf_feature_names = tf_vectorizer.get_feature_names()
 no_topics = 2
 
 # Run LDA
-lda = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=7).fit(tf)
+lda = LatentDirichletAllocation(n_components=no_topics, max_iter=1000, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
 
 no_top_words = 10
 # display_topics(nmf, tfidf_feature_names, no_top_words)
@@ -64,8 +64,6 @@ with open('JocsDeProves/testDataSet.csv') as f:
                 print ("Pel text ", i,", LDA es: ", x)
                 i = i+1
 
-
-# Crec que està fallant perque no està agafant bé el text a vectoritzar -> [text][0]
 
 
 

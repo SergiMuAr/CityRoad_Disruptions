@@ -9,7 +9,7 @@ from nltk.tokenize.toktok import ToktokTokenizer
 csvFile = open('TrainingDataSet/preprocessTraining.csv', 'w')
 csvWriter = csv.writer(csvFile)
 
-with open('TrainingDataSet/trainingDataSet.csv') as f:
+with open('TrainingDataSet/trainingDataSet2.csv') as f:
   reader = csv.reader(f)
   for row in reader:
     # print (row[1])
@@ -96,6 +96,6 @@ csvFile.close()
 
 # Stemmer
 import subprocess
-args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmed2.csv")
+args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmedBFN.csv")
 popen = subprocess.Popen(args, stdout=subprocess.PIPE)
 popen.wait()

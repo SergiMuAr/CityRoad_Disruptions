@@ -1,8 +1,24 @@
 import numpy as np
 import guidedlda
+import csv
 
-X = guidedlda.datasets.load_data(guidedlda.datasets.NYT)
-vocab = guidedlda.datasets.load_vocab(guidedlda.datasets.NYT)
+tlist = []
+with open('TrainingDataSet/stemmed2.csv') as f:
+  reader = csv.reader(f)
+
+  for row in reader:
+        tlist.append(','.join(row))
+
+          
+print (tlist[0])
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, max_features=100)
+X = tf_vectorizer.fit_transform(tlist)
+vocab = tf_vectorizer.get_feature_names()
+
+
+# X = guidedlda.datasets.load_data(guidedlda.datasets.NYT)
+# vocab = guidedlda.datasets.load_vocab(guidedlda.datasets.NYT)
 word2id = dict((v, idx) for idx, v in enumerate(vocab))
 
 print(X.shape)
@@ -12,6 +28,7 @@ print(X.sum())
 model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
 model.fit(X)
 
+print ("HE FET MODEL")
 topic_word = model.topic_word_
 n_top_words = 8
 for i, topic_dist in enumerate(topic_word):
@@ -20,12 +37,10 @@ for i, topic_dist in enumerate(topic_word):
 
 
 # Guided LDA with seed topics.
-seed_topic_list = [['game', 'team', 'win', 'player', 'season', 'second', 'victory'],
-                   ['percent', 'company', 'market', 'price', 'sell', 'business', 'stock', 'share'],
-                   ['music', 'write', 'art', 'book', 'world', 'film'],
-                   ['political', 'government', 'leader', 'official', 'state', 'country', 'american', 'case', 'law', 'police', 'charge', 'officer', 'kill', 'arrest', 'lawyer']]
+seed_topic_list = [['accident'],
+                   ['retencions']]
 
-model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
+model = guidedlda.GuidedLDA(n_topics=2, n_iter=100, random_state=7, refresh=20)
 
 seed_topics = {}
 for t_id, st in enumerate(seed_topic_list):
