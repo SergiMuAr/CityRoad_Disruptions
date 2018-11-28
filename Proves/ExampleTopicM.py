@@ -1,7 +1,7 @@
 import csv
 
 tlist = []
-with open('TrainingDataSet/stemmedBFN.csv') as f:
+with open('TrainingDataSet/stemmed2.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:
@@ -31,6 +31,14 @@ tf_feature_names = tf_vectorizer.get_feature_names()
 no_topics = 2
 
 # Run LDA
+# Provar: tots aquests atributs
+# LatentDirichletAllocation (batch_size=128, doc_topic_prior=None,
+#              evaluate_every=-1, learning_decay=0.7,
+#              learning_method='online', learning_offset=10.0,
+#              max_doc_update_iter=100, max_iter=10, mean_change_tol=0.001,
+#              n_components=10, n_jobs=-1, n_topics=20, perp_tol=0.1,
+#              random_state=100, topic_word_prior=None,
+#              total_samples=1000000.0, verbose=0)
 lda = LatentDirichletAllocation(n_components=no_topics, max_iter=1000, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
 
 no_top_words = 10
