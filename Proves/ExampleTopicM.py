@@ -41,6 +41,15 @@ no_topics = 2
 #              total_samples=1000000.0, verbose=0)
 lda = LatentDirichletAllocation(n_components=no_topics, max_iter=1000, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
 
+# Log Likelyhood: Higher the better
+print("Log Likelihood: ", lda.score(tf))
+
+# Perplexity: Lower the better. Perplexity = exp(-1. * log-likelihood per word)
+print("Perplexity: ", lda.perplexity(tf))
+
+# See model parameters
+print(lda.get_params())
+
 no_top_words = 10
 # display_topics(nmf, tfidf_feature_names, no_top_words)
 display_topics(lda, tf_feature_names, no_top_words)
