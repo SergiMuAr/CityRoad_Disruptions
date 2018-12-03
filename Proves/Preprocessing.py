@@ -9,6 +9,8 @@ from nltk.tokenize.toktok import ToktokTokenizer
 csvFile = open('TrainingDataSet/preprocessTraining.csv', 'w')
 csvWriter = csv.writer(csvFile)
 
+# NETEJAR -&gt DE LES DADES.
+
 with open('TrainingDataSet/trainingDataSet2.csv') as f:
   reader = csv.reader(f)
   for row in reader:

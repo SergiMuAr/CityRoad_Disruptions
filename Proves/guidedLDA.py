@@ -28,7 +28,6 @@ print(X.sum())
 model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
 model.fit(X)
 
-print ("HE FET MODEL")
 topic_word = model.topic_word_
 n_top_words = 8
 for i, topic_dist in enumerate(topic_word):
