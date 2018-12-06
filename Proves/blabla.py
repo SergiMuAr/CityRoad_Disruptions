@@ -1,17 +1,11 @@
+import re
 import csv
 import string
 import nltk
-import re
-
 from nltk import sent_tokenize
 from nltk.tokenize.toktok import ToktokTokenizer
 
-csvFile = open('TrainingDataSet/preprocessTraining.csv', 'w')
-csvWriter = csv.writer(csvFile)
-
-# NETEJAR -&gt DE LES DADES.
-
-with open('TrainingDataSet/trainingDataSet.csv') as f:
+with open('InputTransit.csv') as f:
   reader = csv.reader(f)
   for row in reader:
     # print (row[1])
@@ -19,6 +13,7 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
     # print sentences
     # print "ESPAAAAAAI"
     # Tokenize tweets. Word splitting.
+    print (row)
     from nltk.tokenize.toktok import ToktokTokenizer
     toktok = ToktokTokenizer()
     row = re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', '', ''.join(row).rstrip(), flags=re.MULTILINE)
@@ -36,6 +31,7 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
 
 
     from stopwords_ca import get_stopwords 
+    import re
     emoji_pattern = re.compile("["
                         u"\U0001F600-\U0001F64F"  # emoticons
                         u"\U0001F300-\U0001F5FF"  # symbols & pictographs
@@ -43,6 +39,7 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
                         u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                         u"\U00002702-\U000027B0"
                         u"\U000024C2-\U0001F251"
+                        u"\U0001f9df-\U0000200D"
                         "]+", flags=re.UNICODE)
     # hem agafat els stop_words de http://latel.upf.edu/morgana/altres/pub/ca_stop.htm (ens hem fet la nostra propia funció)
     stop_words = get_stopwords()
@@ -90,14 +87,4 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
     
     # Treure ascii
     # words = [w.encode('ascii', 'ignore').decode('ascii') for w in words]
-
-
-    csvWriter.writerow(words)
-   
-csvFile.close()
-
-# Stemmer
-import subprocess
-args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmed.csv")
-popen = subprocess.Popen(args, stdout=subprocess.PIPE)
-popen.wait()
+    print (words)
