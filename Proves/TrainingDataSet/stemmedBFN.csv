@@ -1,33 +1,33 @@
-encara,embus,ap7,sant,cugat,santa,perpetua,gt,girona,topada,’,camio,turismes,carril,tallat,aturats,santa,perpetua,gt,sud,afecta,b30,equipviari
-aturats,ap7,altura,barbera,sentit,girona,accident,santa,perpetuagt,girona,equipviari
+encara,embus,ap7,sant,cugat,santa,perpetua, ,girona,topada,’,camio,turismes,carril,tallat,aturats,santa,perpetua, ,sud,afecta,b30,equipviari
+aturats,ap7,altura,barbera,sentit,girona,accident,santa,perpetua ,girona,equipviari
 congestio,c58,cerdanyola,c33,montcada,equipviari
-embus,ap7,sant,cugat,santa,perpetua,gt,girona,accident,talla,cua,santa,perpetua,gt,sud,afecta,b30,equipviari
-retirats,vehicles,accidentats,ronda,esplugues,gt,trinitat,millora,circulacio,equipviari
+embus,ap7,sant,cugat,santa,perpetua, ,girona,accident,talla,cua,santa,perpetua, ,sud,afecta,b30,equipviari
+retirats,vehicles,accidentats,ronda,esplugues, ,trinitat,millora,circulacio,equipviari
 talgo,694,sevillaestacio,frança,acumula,’,retard,incidencia,tecnica,limitacions,velocitat,equipviari
-cua,ronda,esplugues,gt,trinitat,accident,afecta,b23,sant,just,desvern,esplugues,gt,ronda,retencions,ronda,litoral,zona,franca,can,tunis,gt,besos,equipviari
-continuen,cues,c17,llagosta,montcada,gt,bcn,obres,b24,cervello,n340,vallirana,gt,tarragona,c14,montblanc,pira,c65,llambilles,banda,banda,equipviari
-ara,aturats,ap7,sant,perpetua,barbera,rubi,papiol,gt,sud,b23,molins,papiol,gt,girona,c1413,antiga,papiol,sant,cugat,b30,barbera,gt,sud,cerdanyola,gt,nord,c58,sant,quirze,gt,sud,equipviari
-retencio,b22,entrada,t1,aeroport,prat,afecta,c31,sud,gt,tarragona,equipviari
-cua,ronda,nus,llobregat,esplugues,gt,trinitat,accident,afecta,b23,sant,just,desvern,esplugues,gt,ronda,equipviari
+cua,ronda,esplugues, ,trinitat,accident,afecta,b23,sant,just,desvern,esplugues, ,ronda,retencions,ronda,litoral,zona,franca,can,tunis, ,besos,equipviari
+continuen,cues,c17,llagosta,montcada, ,bcn,obres,b24,cervello,n340,vallirana, ,tarragona,c14,montblanc,pira,c65,llambilles,banda,banda,equipviari
+ara,aturats,ap7,sant,perpetua,barbera,rubi,papiol, ,sud,b23,molins,papiol, ,girona,c1413,antiga,papiol,sant,cugat,b30,barbera, ,sud,cerdanyola, ,nord,c58,sant,quirze, ,sud,equipviari
+retencio,b22,entrada,t1,aeroport,prat,afecta,c31,sud, ,tarragona,equipviari
+cua,ronda,nus,llobregat,esplugues, ,trinitat,accident,afecta,b23,sant,just,desvern,esplugues, ,ronda,equipviari
 topada,camions,implicats,b142,altura,rotonda,polinya,cues,equipviari
-cues,a2,sant,vicenç,dels,horts,gt,lleida,obres,b23,molins,’,ap7,papiol,gt,girona,ap7,b30,barberagt,sud,c58,sant,quirzegt,sud,ronda,sarria,roquetesgt,besos,cua,ronda,litoral,vila,olimpicagt,nus,llobregat,equipviari
+cues,a2,sant,vicenç,dels,horts, ,lleida,obres,b23,molins,’,ap7,papiol, ,girona,ap7,b30,barbera ,sud,c58,sant,quirze ,sud,ronda,sarria,roquetes ,besos,cua,ronda,litoral,vila,olimpica ,nus,llobregat,equipviari
 1,carril,obert,c65,llagostera,retirar,vehicle,tingut,accident,precaucio,equipviari
 c241d,normalitzada,tallada,sarral,retirar,vehicle,accidentat,mati,equipviari
-retirat,camio,avariat,a2,abrera,gt,bcn,normalitza,circulacio,equipviari
+retirat,camio,avariat,a2,abrera, ,bcn,normalitza,circulacio,equipviari
 c241d,tallada,sarral,conca,barbera,retirar,vehicle,tingut,accident,mati,equipviari
 claravirgili,gracies,clara,
-normalitzada,circulacio,tunels,garraf,c32,sitges,gt,bcn,equipviari
-retencions,tunels,garraf,c32,sitges,pk,36345,gt,bcn,retiren,vehicles,implicats,accident,voral,precaucio,equipviari
-1,carril,tallat,a2,abrera,pk,583,gt,bcn,causa,vehicle,avariat,retencions,esparreguera,precaucio,equipviari
+normalitzada,circulacio,tunels,garraf,c32,sitges, ,bcn,equipviari
+retencions,tunels,garraf,c32,sitges,pk,36345, ,bcn,retiren,vehicles,implicats,accident,voral,precaucio,equipviari
+1,carril,tallat,a2,abrera,pk,583, ,bcn,causa,vehicle,avariat,retencions,esparreguera,precaucio,equipviari
 r14,renfe,lleida,06,23,estacio,frança,09,49,circula,35,minuts,retard,equipviari
-nii,reoberta,agullana,emporda,tallada,5,causa,accident,retencions,pontdemolins,gt,nord,equipviari
+nii,reoberta,agullana,emporda,tallada,5,causa,accident,retencions,pontdemolins, ,nord,equipviari
 ,ultimahora,detinguts,4,homes,acusats,7,assalts,violents,ap7,feien,passar,policies,assaltaven,autocaravanes,furgonetes,aparcades,arees,servei,mossos
 tallada,5,matinada,nii,agullana,emporda,topada,frontal,vist,implicats,3,vehicles,desviaments,ap7,sud,entrada,jonquera,nord,acces,pont,molins,equipviari
 n340,normalitzada,cervello,accident,equipviari
-15,km,cua,a2,martorell,palleja,gt,bcn,retirats,vehicles,implicats,accident,alternativa,ap7,b23,equipviari
+15,km,cua,a2,martorell,palleja, ,bcn,retirats,vehicles,implicats,accident,alternativa,ap7,b23,equipviari
 pas,alternatiu,n340,cervello,pk,1231,accident,retencions,2,sentits,equipviari
 nii,tallada,agullana,emporda,2,sentits,causa,accident,desviaments,ap7,precaucio,equipviari
-accident,a2,palleja,pk,601,gt,bcn,retencions,santandreudelabarca,precaucio,equipviari
+accident,a2,palleja,pk,601, ,bcn,retencions,santandreudelabarca,precaucio,equipviari
 nimediabroma,urgente,necesario
 tambien,soy,poco,cansino,jajaja,alla,voy,cristinapardo
 flavitabanana,

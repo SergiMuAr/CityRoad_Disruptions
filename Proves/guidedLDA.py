@@ -3,7 +3,7 @@ import guidedlda
 import csv
 
 tlist = []
-with open('TrainingDataSet/stemmed2.csv') as f:
+with open('TrainingDataSet/stemmedBFN.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:
@@ -25,21 +25,21 @@ print(X.shape)
 
 print(X.sum())
 # Normal LDA without seeding
-model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
-model.fit(X)
+# model = guidedlda.GuidedLDA(n_topics=2, n_iter=100, random_state=7, refresh=20)
+# model.fit(X)
 
-topic_word = model.topic_word_
-n_top_words = 8
-for i, topic_dist in enumerate(topic_word):
-    topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
-    print('Topic {}: {}'.format(i, ' '.join(topic_words)))
+# topic_word = model.topic_word_
+# n_top_words = 8
+# for i, topic_dist in enumerate(topic_word):
+#     topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
+#     print('Topic {}: {}'.format(i, ' '.join(topic_words)))
 
 
 # Guided LDA with seed topics.
-seed_topic_list = [['accident'],
-                   ['retencions']]
+seed_topic_list = [['accident', 'retencions', 'cues', 'ronda', 'tallada'],
+                   ['humor', 'latemotivcero']]
 
-model = guidedlda.GuidedLDA(n_topics=2, n_iter=100, random_state=7, refresh=20)
+model = guidedlda.GuidedLDA(n_topics=2, n_iter=1000, random_state=7, refresh=20)
 
 seed_topics = {}
 for t_id, st in enumerate(seed_topic_list):

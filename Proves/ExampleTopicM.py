@@ -1,7 +1,7 @@
 import csv
 
 tlist = []
-with open('TrainingDataSet/stemmed2.csv') as f:
+with open('TrainingDataSet/stemmedBFN.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:

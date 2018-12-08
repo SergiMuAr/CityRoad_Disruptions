@@ -5,13 +5,12 @@ auth.set_access_token("988457597241118720-NIGfC9gqlNakSIcmDZfVAvb5LZHDgqa", "Syo
 
 api = tweepy.API(auth)
 
-print (api)
 
 # for status in tweepy.Cursor(api.user_timeline, screen_name='@transit').items():
 #     print (status._json['text'])
 
 # Open/create a file to append data to
-csvFile = open('guardiaUrbana.csv', 'a')
+csvFile = open('TwitterResults/searchTI.csv', 'w')
 
 #Use csv writer
 csvWriter = csv.writer(csvFile)
@@ -22,11 +21,8 @@ csvWriter = csv.writer(csvFile)
 #     # csvWriter.writerow([tweet.created_at, tweet.text])
 #     print (status.full_text)
 # csvFile.close()
-for tweet_info in tweepy.Cursor(api.user_timeline, screen_name='@barcelona_GUB', tweet_mode='extended').items(500):
-    if 'retweeted_status' in dir(tweet_info):
-        tweet=tweet_info.retweeted_status.full_text
-    else:
-        tweet=tweet_info.full_text
-    print (tweet)
-    csvWriter.writerow([tweet])
+query = "incident OR incidència OR incidencia OR accident OR cues OR retencions OR aturats OR tall OR obres -filter:retweets",
+for tweet in tweepy.Cursor(api.search, q=query, geocode = "41.5,2.0,100km", exclude_replies = True, tweet_mode = "extended").items(500):
+    # print (tweet.full_text)
+    csvWriter.writerow([tweet.full_text])
 csvFile.close()
