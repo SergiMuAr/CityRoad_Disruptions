@@ -3,7 +3,7 @@ import guidedlda
 import csv
 
 tlist = []
-with open('TrainingDataSet/stemmedBFN.csv') as f:
+with open('TrainingDataSet/stemmed2.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:
@@ -24,8 +24,8 @@ word2id = dict((v, idx) for idx, v in enumerate(vocab))
 print(X.shape)
 
 print(X.sum())
-# Normal LDA without seeding
-# model = guidedlda.GuidedLDA(n_topics=2, n_iter=100, random_state=7, refresh=20)
+# # Normal LDA without seeding
+# model = guidedlda.GuidedLDA(n_topics=2, n_iter=10000, random_state=7, refresh=20)
 # model.fit(X)
 
 # topic_word = model.topic_word_
@@ -36,8 +36,8 @@ print(X.sum())
 
 
 # Guided LDA with seed topics.
-seed_topic_list = [['accident', 'retencions', 'cues', 'ronda', 'tallada'],
-                   ['humor', 'latemotivcero']]
+seed_topic_list = [['accident', 'retencions', 'cues', 'tallat', 'obres', 'ap7', 'b30'],
+                   []]
 
 model = guidedlda.GuidedLDA(n_topics=2, n_iter=1000, random_state=7, refresh=20)
 
@@ -53,3 +53,13 @@ topic_word = model.topic_word_
 for i, topic_dist in enumerate(topic_word):
     topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
     print('Topic {}: {}'.format(i, ' '.join(topic_words)))
+
+# Provar tweets
+with open('JocsDeProves/testDataSet.csv') as f:
+        reader = csv.reader(f)
+        i = 1
+        for row in reader:
+                text = ','.join(row)
+                x = model.transform(tf_vectorizer.transform([text]))[0]
+                print ("Pel text ", i,", LDA es: ", x)
+                i = i+1

@@ -1,7 +1,7 @@
 import csv
 
 tlist = []
-with open('TrainingDataSet/stemmedBFN.csv') as f:
+with open('TrainingDataSet/preprocessTraining.csv') as f:
   reader = csv.reader(f)
 
   for row in reader:
@@ -28,7 +28,7 @@ tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, max_features=no_features)
 tf = tf_vectorizer.fit_transform(tlist)
 tf_feature_names = tf_vectorizer.get_feature_names()
 
-no_topics = 2
+no_topics = 3
 
 # Run LDA
 # Provar: tots aquests atributs
@@ -39,7 +39,7 @@ no_topics = 2
 #              n_components=10, n_jobs=-1, n_topics=20, perp_tol=0.1,
 #              random_state=100, topic_word_prior=None,
 #              total_samples=1000000.0, verbose=0)
-lda = LatentDirichletAllocation(n_components=no_topics, max_iter=1000, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
+lda = LatentDirichletAllocation(n_components=no_topics, max_iter=10000, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
 
 # Log Likelyhood: Higher the better
 print("Log Likelihood: ", lda.score(tf))
@@ -50,7 +50,7 @@ print("Perplexity: ", lda.perplexity(tf))
 # See model parameters
 print(lda.get_params())
 
-no_top_words = 10
+no_top_words = 15
 # display_topics(nmf, tfidf_feature_names, no_top_words)
 display_topics(lda, tf_feature_names, no_top_words)
 

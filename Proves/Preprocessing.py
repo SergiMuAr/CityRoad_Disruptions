@@ -11,7 +11,7 @@ csvWriter = csv.writer(csvFile)
 
 # NETEJAR -&gt DE LES DADES.
 
-with open('TrainingDataSet/trainingDataSet2.csv') as f:
+with open('TrainingDataSet/trainingBO.csv') as f:
   reader = csv.reader(f)
   for row in reader:
     # print (row[1])
@@ -98,6 +98,6 @@ csvFile.close()
 
 # Stemmer
 import subprocess
-args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmedBFN.csv")
+args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmed.csv")
 popen = subprocess.Popen(args, stdout=subprocess.PIPE)
 popen.wait()
