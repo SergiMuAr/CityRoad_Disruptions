@@ -1,5 +1,7 @@
 import nltk
 import csv
+import string
+import re
 # from nltk.tokenize.toktok import ToktokTokenizer
 
 # toktok = ToktokTokenizer()
@@ -30,13 +32,14 @@ import csv
 # popen = subprocess.Popen(args, stdout=subprocess.PIPE)
 # popen.wait()
 
-import subprocess
-args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "JocsDeProves/testPreprocess.csv", "-o", "JocsDeProves/stemmedTest.csv")
-popen = subprocess.Popen(args, stdout=subprocess.PIPE)
-popen.wait()
-
-with open('JocsDeProves/stemmedTest.csv') as f:
+# import subprocess
+# args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "JocsDeProves/testPreprocess.csv", "-o", "JocsDeProves/stemmedTest.csv")
+# popen = subprocess.Popen(args, stdout=subprocess.PIPE)
+# popen.wait()
+tlist = []
+with open('TrainingDataSet/stemmed.csv') as f:
   reader = csv.reader(f)
-
   for row in reader:
-          print (','.join(row))
+    tlist.append((','.join(row), ['TI']))
+          
+print (tlist[:2])

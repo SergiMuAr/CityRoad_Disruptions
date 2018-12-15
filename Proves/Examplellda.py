@@ -1,18 +1,23 @@
 # @source code: example/exapmle.py
-
+import csv
 import llda
 
+tlist = []
+with open('TrainingDataSet/stemmed.csv') as f:
+  reader = csv.reader(f)
+  for row in reader:
+    tlist.append((','.join(row), ['TI']))
+
 # data
-labeled_documents = [("encara,embus,ap7,sant,cugat,santa,perpetua,girona,topada,camio,turismes,carril,tallada,aturats,santa,perpetua,sud,afecta,b30,equipviari", ["TI"]),
+labeled_documents = [("encara,embus,ap7,sant,cugat,santa,perpetua,gt,girona,topada,,camio,turismes,carril,tallat,aturats,santa,perpetua,gt,sud,afecta,b30,equipviari", ["TI"]),
                      ("aturats,ap7,altura,barbera,sentit,girona,accident,santa,perpetua,girona,equipviari", ["TI"]),
-                     ("hija,yo,recordamos,hoy,hay,naidesabenada,laser,las,1300,esperamos", ["NTI"]),
-                     ("desde,tarde,hasta,domingo,mis,posters,estaran,utopiamarkets,ilustracion,parada,thefolioclub,que,ilusien", ["NTI"])]
+                     ("nii,tallada,agullana,emporda,2,sentits,causa,accident,desviaments,ap7,precaucio,equipviari", ["TI"])]
 
 # new a Labeled LDA model
-llda_model = llda.LldaModel(labeled_documents=labeled_documents)
+llda_model = llda.LldaModel(labeled_documents=tlist)
 # print llda_model
 
-# training
+# trainingass
 llda_model.training(iteration=10, log=True)
 
 # update
@@ -28,7 +33,7 @@ llda_model.training(iteration=10, log=True)
 
 # inference
 # note: the result topics may be different for difference training, because gibbs sampling is a random algorithm
-document = "nii,tallada,agullana,emporda,2,sentits,causa,accident,desviaments,ap7,precaucio,equipviari"
+document = "accident,tarragona,talla,carril,sentit,nord,provoca,2km"
 topics = llda_model.inference(document=document, iteration=10, times=10)
 print "Mirem topics: ", topics
 

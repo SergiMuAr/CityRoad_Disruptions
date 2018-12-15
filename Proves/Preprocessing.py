@@ -11,7 +11,7 @@ csvWriter = csv.writer(csvFile)
 
 # NETEJAR -&gt DE LES DADES.
 
-with open('TrainingDataSet/trainingBO.csv') as f:
+with open('TrainingDataSet/trainingDataSet.csv') as f:
   reader = csv.reader(f)
   for row in reader:
     # print (row[1])
@@ -22,9 +22,10 @@ with open('TrainingDataSet/trainingBO.csv') as f:
     from nltk.tokenize.toktok import ToktokTokenizer
     toktok = ToktokTokenizer()
     row = re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', '', ''.join(row).rstrip(), flags=re.MULTILINE)
+
     tokens = toktok.tokenize(row)
     words = tokens
-    table = str.maketrans('', '', string.punctuation)
+    table = str.maketrans('', '', ''.join([string.punctuation,"’"]))
     words = [w.translate(table) for w in tokens]
 
     # Filter only if word is alphabetic characters only. (fer que AP-7 també estigui acceptat -> guions i numeros)
@@ -90,8 +91,6 @@ with open('TrainingDataSet/trainingBO.csv') as f:
     
     # Treure ascii
     # words = [w.encode('ascii', 'ignore').decode('ascii') for w in words]
-
-
     csvWriter.writerow(words)
    
 csvFile.close()
@@ -101,3 +100,13 @@ import subprocess
 args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmed.csv")
 popen = subprocess.Popen(args, stdout=subprocess.PIPE)
 popen.wait()
+
+
+csvFile = open('TrainingDataSet/stemmedllda.csv', 'w')
+csvWriter = csv.writer(csvFile)
+with open('TrainingDataSet/stemmed.csv') as f:
+  reader = csv.reader(f)
+  for row in reader:
+    csvWriter.writerow((','.join(row), ['TI']))
+      
+        
