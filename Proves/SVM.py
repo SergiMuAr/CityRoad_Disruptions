@@ -8,30 +8,16 @@ data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '\t', lineterminator=
 text = data['Text'] #you can also use df['column_name']
 target = data['Class']
 
-# labels, texts = [], []
-# for i, line in enumerate(data.split("\n")):
-#     content = line.split()
-#     labels.append(content[0])
-#     texts.append(" ".join(content[1:]))
+# data_test = pd.read_csv('JocsDeProves/testBO.csv',  sep = '\t', lineterminator='\n')
+# test_text = data_test['Text']
+# test_target = data_test['Class']
 
-# create a dataframe using texts and lables
-# trainDF = pandas.DataFrame()
-# trainDF['text'] = texts
-# trainDF['label'] = labels
-# tlist = []
-# with open('TrainingDataSet/stemmedNTI.csv') as f:
-#   reader = csv.reader(f)
-#   for row in reader:
-#     tlist.append(','.join(row))
+test_text = []
+with open('TrainingDataSet/stemmedNTI.csv') as f:
+  reader = csv.reader(f)
+  for row in reader:
+        test_text.append(','.join(row))
 
-# print (tlist[0])
-
-# test = []
-# with open('JocsDeProves/testPreprocess.csv') as f:
-#   reader = csv.reader(f)
-
-#   for row in reader:
-#         test.append(','.join(row))
 
 
 #Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset
@@ -48,7 +34,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
 tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2))
 train_matrix = tf_vectorizer.fit_transform(text).toarray()
-# test_matrix = tf_vectorizer.transform(test)
+test_matrix = tf_vectorizer.transform(test_text).toarray()
 
 # labels = df.category_id
 
@@ -59,26 +45,4 @@ model = svm.SVC(kernel='linear', gamma=1)
 # there is various option associated with it, like changing kernel, gamma and C value. Will discuss more # about it in next section.Train the model using the training sets and check score
 model.fit(train_matrix, target)
 print (model.score(train_matrix, target))
-
-
-# N = 2
-# for Product, category_id in sorted(category_to_id.items()):
-#   features_chi2 = chi2(features, labels == category_id)
-#   indices = np.argsort(features_chi2[0])
-#   feature_names = np.array(tfidf.get_feature_names())[indices]
-#   unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
-#   bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
-#   print("# '{}':".format(Product))
-#   print("  . Most correlated unigrams:\n. {}".format('\n. '.join(unigrams[-N:])))
-#   print("  . Most correlated bigrams:\n. {}".format('\n. '.join(bigrams[-N:])))
-
-
-# X = [[0], [1], [2], [3]]
-# Y = [0, 1, 2, 3]
-
-# model = svm.SVC(kernel='linear', gamma=1) 
-# # there is various option associated with it, like changing kernel, gamma and C value. Will discuss more # about it in next section.Train the model using the training sets and check score
-# model.fit(X, Y)
-# model.score(X, Y)
-# #Predict Output
-# print (model.predict([2]))
+print (model.predict(test_matrix))
