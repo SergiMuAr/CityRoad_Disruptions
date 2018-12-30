@@ -6,12 +6,11 @@ import re
 from nltk import sent_tokenize
 from nltk.tokenize.toktok import ToktokTokenizer
 
-csvFile = open('TrainingDataSet/preprocessTraining.csv', 'w')
+csvFile = open('TrainingDataSet/stemmedNTI.csv', 'w')
 csvWriter = csv.writer(csvFile)
-
 # NETEJAR -&gt DE LES DADES.
 
-with open('TrainingDataSet/trainingDataSet.csv') as f:
+with open('TwitterResults/searchTwNTI.csv') as f:
   reader = csv.reader(f)
   for row in reader:
     # print (row[1])
@@ -95,18 +94,18 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
    
 csvFile.close()
 
-# Stemmer
-import subprocess
-args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmed.csv")
-popen = subprocess.Popen(args, stdout=subprocess.PIPE)
-popen.wait()
+# # Stemmer
+# import subprocess
+# args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmed.csv")
+# popen = subprocess.Popen(args, stdout=subprocess.PIPE)
+# popen.wait()
 
 
-csvFile = open('TrainingDataSet/stemmedllda.csv', 'w')
-csvWriter = csv.writer(csvFile)
-with open('TrainingDataSet/stemmed.csv') as f:
-  reader = csv.reader(f)
-  for row in reader:
-    csvWriter.writerow((','.join(row), ['TI']))
+# csvFile = open('TrainingDataSet/stemmedllda.csv', 'w')
+# csvWriter = csv.writer(csvFile)
+# with open('TrainingDataSet/stemmed.csv') as f:
+#   reader = csv.reader(f)
+#   for row in reader:
+#     csvWriter.writerow((','.join(row), ['TI']))
       
         

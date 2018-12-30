@@ -21,10 +21,14 @@ csvWriter = csv.writer(csvFile)
 #     # csvWriter.writerow([tweet.created_at, tweet.text])
 #     print (status.full_text)
 # csvFile.close()
-query = "-filter:retweets since:2018-11-15 until:2018-12-3",
+# query = "-filter:retweets since:2018-11-15 until:2018-12-26",
+query = "-filter:retweets"
+
 for tweet in tweepy.Cursor(api.search, q=query, geocode = "41.5,2.0,100km", exclude_replies = True, tweet_mode = "extended").items(500):
 #     print (tweet)
     if (not tweet.retweeted) and ('RT @' not in tweet.full_text) and (tweet.metadata['iso_language_code'] == "ca"):
-        csvWriter.writerow((tweet.id_str, tweet.full_text)) 
+        csvWriter.writerow([tweet.full_text]) 
+        # csvWriter.writerow(tweet.full_text) 
+        # print (tweet.full_text)
 
 csvFile.close()

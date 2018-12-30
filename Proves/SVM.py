@@ -3,6 +3,7 @@ from sklearn import svm
 import csv
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '\t', lineterminator='\n')
 text = data['Text'] #you can also use df['column_name']
@@ -46,3 +47,21 @@ model = svm.SVC(kernel='linear', gamma=1)
 model.fit(train_matrix, target)
 print (model.score(train_matrix, target))
 print (model.predict(test_matrix))
+
+
+# create a mesh to plot in
+x_min, x_max = train_matrix[:, 0].min() - 1, train_matrix[:, 0].max() + 1
+y_min, y_max = train_matrix[:, 1].min() - 1, train_matrix[:, 1].max() + 1
+h = (x_max / x_min)/100
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+ np.arange(y_min, y_max, h))
+plt.subplot(1, 1, 1)
+Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
+plt.scatter(train_matrix[:, 0], train_matrix[:, 1], c=target, cmap=plt.cm.Paired)
+plt.xlabel('Sepal length')
+plt.ylabel('Sepal width')
+plt.xlim(xx.min(), xx.max())
+plt.title('SVC with linear kernel')
+plt.show()
