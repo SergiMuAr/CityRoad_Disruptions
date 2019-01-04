@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '\t', lineterminator='\n')
-text = data['Text'] #you can also use df['column_name']
+text = data['Text']
 target = data['Class']
 
 # data_test = pd.read_csv('JocsDeProves/testBO.csv',  sep = '\t', lineterminator='\n')
@@ -14,12 +14,23 @@ target = data['Class']
 # test_target = data_test['Class']
 
 test_text = []
-with open('TrainingDataSet/stemmedNTI.csv') as f:
+with open('JocsDeProves/testBO.csv') as f:
   reader = csv.reader(f)
   for row in reader:
         test_text.append(','.join(row))
 
-
+# def plot_coefficients(classifier, feature_names, top_features=20):
+#  coef = classifier.coef_.ravel()
+#  top_positive_coefficients = np.argsort(coef)[-top_features:]
+#  top_negative_coefficients = np.argsort(coef)[:top_features]
+#  top_coefficients = np.hstack([top_negative_coefficients, top_positive_coefficients])
+#  # create plot
+#  plt.figure(figsize=(15, 5))
+#  colors = [‘red’ if c < 0 else ‘blue’ for c in coef[top_coefficients]]
+#  plt.bar(np.arange(2 * top_features), coef[top_coefficients], color=colors)
+#  feature_names = np.array(feature_names)
+#  plt.xticks(np.arange(1, 1 + 2 * top_features), feature_names[top_coefficients], rotation=60, ha=’right’)
+#  plt.show()
 
 #Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset
 # Create SVM classification object 
@@ -48,20 +59,35 @@ model.fit(train_matrix, target)
 print (model.score(train_matrix, target))
 print (model.predict(test_matrix))
 
+# plot_coefficients(model, cv.get_feature_names())
 
-# create a mesh to plot in
-x_min, x_max = train_matrix[:, 0].min() - 1, train_matrix[:, 0].max() + 1
-y_min, y_max = train_matrix[:, 1].min() - 1, train_matrix[:, 1].max() + 1
-h = (x_max / x_min)/100
-xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
- np.arange(y_min, y_max, h))
-plt.subplot(1, 1, 1)
-Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
-Z = Z.reshape(xx.shape)
-plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
-plt.scatter(train_matrix[:, 0], train_matrix[:, 1], c=target, cmap=plt.cm.Paired)
-plt.xlabel('Sepal length')
-plt.ylabel('Sepal width')
-plt.xlim(xx.min(), xx.max())
-plt.title('SVC with linear kernel')
-plt.show()
+
+# print (train_matrix)
+# X = train_matrix[:, :2] # we only take the first two features. We could
+#  # avoid this ugly slicing by using a two-dim dataset
+# y = target
+# # we create an instance of SVM and fit out data. We do not scale our
+# # data since we want to plot the support vectors
+# C = 1.0 # SVM regularization parameter
+# svc = svm.SVC(kernel='linear', C=1,gamma='auto').fit(X, y)
+
+# print ("HOLA")
+
+# # create a mesh to plot in
+# x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+# y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+# h = (x_max / x_min)/100
+
+# print (x_min, x_max, y_min, y_max, h)
+# xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+#  np.arange(y_min, y_max, h))
+# plt.subplot(1, 1, 1)
+# Z = svc.predict(np.c_[xx.ravel(), yy.ravel()])
+# Z = Z.reshape(xx.shape)
+# plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
+# plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
+# plt.xlabel('Sepal length')
+# plt.ylabel('Sepal width')
+# plt.xlim(xx.min(), xx.max())
+# plt.title('SVC with linear kernel')
+# plt.show()

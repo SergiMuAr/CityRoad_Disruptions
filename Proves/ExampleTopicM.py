@@ -1,11 +1,18 @@
 import csv
 
 tlist = []
-with open('TrainingDataSet/preprocessTraining.csv') as f:
+auxlist = []
+with open('TrainingDataSet/stemmed.csv') as f:
   reader = csv.reader(f)
-
+  var = 0
   for row in reader:
-        tlist.append(','.join(row))
+        auxlist.append(','.join(row))
+        if (var%10 == 9):
+                tlist.append(','.join(auxlist))
+                auxlist = []
+                # print (tlist)
+                # print (auxlist)
+        var = var +1
 
           
 print (tlist[0])
@@ -28,7 +35,11 @@ tf_vectorizer = CountVectorizer(max_df=0.95, min_df=2, max_features=no_features)
 tf = tf_vectorizer.fit_transform(tlist)
 tf_feature_names = tf_vectorizer.get_feature_names()
 
-no_topics = 3
+print ("FEATURES")
+print (tf)
+print (tf_feature_names)
+
+no_topics = 1
 
 # Run LDA
 # Provar: tots aquests atributs
@@ -39,7 +50,7 @@ no_topics = 3
 #              n_components=10, n_jobs=-1, n_topics=20, perp_tol=0.1,
 #              random_state=100, topic_word_prior=None,
 #              total_samples=1000000.0, verbose=0)
-lda = LatentDirichletAllocation(n_components=no_topics, max_iter=10000, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
+lda = LatentDirichletAllocation(n_components=no_topics, max_iter=100, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
 
 # Log Likelyhood: Higher the better
 print("Log Likelihood: ", lda.score(tf))
@@ -94,3 +105,7 @@ with open('JocsDeProves/testDataSet.csv') as f:
 # similarities = most_similar(x, nmf_Z)
 # document_id, similarity = similarities[0]
 # print(data[document_id][:1000])
+
+
+
+# LDA COM A REDUCTOR DE DIMENSIONALITAT (APLICANT AMB UN SOL TOPIC) I DESPRÉS LI PASSO AL SVM COM A INPUT!

@@ -36,10 +36,18 @@ import re
 # args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "JocsDeProves/testPreprocess.csv", "-o", "JocsDeProves/stemmedTest.csv")
 # popen = subprocess.Popen(args, stdout=subprocess.PIPE)
 # popen.wait()
-tlist = []
-with open('TrainingDataSet/stemmed.csv') as f:
-  reader = csv.reader(f)
-  for row in reader:
-    tlist.append((','.join(row), ['TI']))
+# tlist = []
+# with open('TrainingDataSet/stemmed.csv') as f:
+#   reader = csv.reader(f)
+#   for row in reader:
+#     tlist.append((','.join(row), ['TI']))
           
-print (tlist[:2])
+# print (tlist[:2])
+
+import pandas as pd
+# data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '/n', names=['Text', 'Class'], engine='python')
+data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '\t', lineterminator='\n')
+
+
+print (data.Text)
+print (data.Class)
