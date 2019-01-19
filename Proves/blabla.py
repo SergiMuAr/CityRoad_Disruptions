@@ -46,8 +46,7 @@ import re
 
 import pandas as pd
 # data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '/n', names=['Text', 'Class'], engine='python')
-data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '\t', lineterminator='\n')
+data = pd.read_csv('/home/sergi/CityRoad_Disruptions/Proves/TrainingDataSet/trainingDataSet.csv', sep = '\t', lineterminator='\n')
+for index, row in data.iterrows():
+    print(row['Text'])
 
-
-print (data.Text)
-print (data.Class)
