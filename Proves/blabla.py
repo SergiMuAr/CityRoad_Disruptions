@@ -1,7 +1,20 @@
-import nltk
-import csv
-import string
-import re
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+# use seaborn plotting defaults
+import seaborn as sns; sns.set()
+
+from sklearn.datasets.samples_generator import make_blobs
+X, y = make_blobs(n_samples=50, centers=2,
+                  random_state=0, cluster_std=0.60)
+plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='autumn')
+
+
+# import nltk
+# import csv
+# import string
+# import re
 # from nltk.tokenize.toktok import ToktokTokenizer
 
 # toktok = ToktokTokenizer()
@@ -44,9 +57,8 @@ import re
           
 # print (tlist[:2])
 
-import pandas as pd
-# data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '/n', names=['Text', 'Class'], engine='python')
-data = pd.read_csv('/home/sergi/CityRoad_Disruptions/Proves/TrainingDataSet/trainingDataSet.csv', sep = '\t', lineterminator='\n')
-for index, row in data.iterrows():
-    print(row['Text'])
-
+# import pandas as pd
+# # data = pd.read_csv('TrainingDataSet/trainingBO.csv', sep = '/n', names=['Text', 'Class'], engine='python')
+# data = pd.read_csv('/home/sergi/CityRoad_Disruptions/Proves/TrainingDataSet/trainingDataSet.csv', sep = '\t', lineterminator='\n')
+# for index, row in data.iterrows():
+#     print(row['Text'])

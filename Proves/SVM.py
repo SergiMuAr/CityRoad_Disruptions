@@ -7,17 +7,23 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv('TrainingDataSet/preprocessedDS.csv', sep = '\t', lineterminator='\n')
 text = data['Text']
+print (text)
 target = data['Class']
+
+data = pd.read_csv('JocsDeProves/testBO.csv', sep = '\t', lineterminator='\n')
+test_text = data['Text']
+print (text)
+test_class = data['Class']
 
 # data_test = pd.read_csv('JocsDeProves/testBO.csv',  sep = '\t', lineterminator='\n')
 # test_text = data_test['Text']
 # test_target = data_test['Class']
 
-test_text = []
-with open('JocsDeProves/testBO.csv') as f:
-  reader = csv.reader(f)
-  for row in reader:
-        test_text.append(','.join(row))
+# test_text = []
+# with open('JocsDeProves/testPreprocess.csv') as f:
+#   reader = csv.reader(f)
+#   for row in reader:
+#         test_text.append(','.join(row))
 
 # def plot_coefficients(classifier, feature_names, top_features=20):
 #  coef = classifier.coef_.ravel()
@@ -45,7 +51,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 # print (tf_feature_names)
 
 tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2))
-train_matrix = tf_vectorizer.fit_transform(text).toarray()
+train_matrix = tf_vectorizer.fit_transform(text.values.astype('U')).toarray()
 test_matrix = tf_vectorizer.transform(test_text).toarray()
 
 # labels = df.category_id
@@ -56,8 +62,14 @@ print (train_matrix.shape) # 445 tweets are represented by 387 features.
 model = svm.SVC(kernel='linear', gamma=1) 
 # there is various option associated with it, like changing kernel, gamma and C value. Will discuss more # about it in next section.Train the model using the training sets and check score
 model.fit(train_matrix, target)
-print (model.score(train_matrix, target))
-print (model.predict(test_matrix))
+score = model.score(train_matrix, target)
+print (score)
+predict = model.predict(test_matrix)
+print (predict)
+print (np.transpose(test_class))
+
+
+
 
 # plot_coefficients(model, cv.get_feature_names())
 

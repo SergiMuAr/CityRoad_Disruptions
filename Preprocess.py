@@ -15,7 +15,7 @@ def preprocess (dataSet):
         txt = re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', '', ''.join(txt).rstrip(), flags=re.MULTILINE)
         tokens = toktok.tokenize(txt)
         words = tokens
-        table = str.maketrans('', '', string.punctuation)
+        table = str.maketrans('', '', ''.join([string.punctuation,"’"]))
         words = [w.translate(table) for w in tokens]
 
         # Filter only if word is alphabetic characters only. (fer que AP-7 també estigui acceptat -> guions i numeros)
@@ -38,8 +38,12 @@ def preprocess (dataSet):
         # hem agafat els stop_words de http://latel.upf.edu/morgana/altres/pub/ca_stop.htm (ens hem fet la nostra propia funció)
         stop_words = get_stopwords()
         words = [emoji_pattern.sub(r'', w) for w in words if not w in stop_words] # NO EMOJI
-        data['Text'][index] = ','.join(words)
+        import unidecode
+        unaccented_string = unidecode.unidecode(','.join(words))
+        data['Text'][index] = unaccented_string
         
     data.to_csv('DataSet/preprocessed.csv', sep='\t')
 
     return False
+
+    # Em sembla que necessito passar-li stemmer per treure accents.

@@ -10,7 +10,7 @@ csvFile = open('TrainingDataSet/stemmedNTI.csv', 'w')
 csvWriter = csv.writer(csvFile)
 # NETEJAR -&gt DE LES DADES.
 
-with open('TwitterResults/searchTwNTI.csv') as f:
+with open('TrainingDataSet/trainingDataSet.csv') as f:
   reader = csv.reader(f)
   for row in reader:
     # print (row[1])
@@ -93,7 +93,6 @@ with open('TwitterResults/searchTwNTI.csv') as f:
     csvWriter.writerow(words)
    
 csvFile.close()
-
 # # Stemmer
 # import subprocess
 # args = ("/home/sergi/snowball/stemwords", "-l", "catalan", "-i", "TrainingDataSet/preprocessTraining.csv", "-o", "TrainingDataSet/stemmed.csv")
