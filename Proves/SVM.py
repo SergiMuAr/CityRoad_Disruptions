@@ -1,14 +1,17 @@
 #Import Library
+import numpy as np
 from sklearn import svm
 import csv
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.model_selection import train_test_split
 
 data = pd.read_csv('TrainingDataSet/preprocessedDS.csv', sep = '\t', lineterminator='\n')
 text = data['Text']
 print (text)
 target = data['Class']
+
 
 data = pd.read_csv('JocsDeProves/testBO.csv', sep = '\t', lineterminator='\n')
 test_text = data['Text']
@@ -41,7 +44,6 @@ test_class = data['Class']
 #Assumed you have, X (predictor) and Y (target) for training data set and x_test(predictor) of test_dataset
 # Create SVM classification object 
 
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 # tf_vectorizer = CountVectorizer(max_df=0.95, min_df=5, max_features=100)
 # tf = tf_vectorizer.fit_transform(tlist)
 # tf_feature_names = tf_vectorizer.get_feature_names()
@@ -54,23 +56,37 @@ tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding
 train_matrix = tf_vectorizer.fit_transform(text.values.astype('U')).toarray()
 test_matrix = tf_vectorizer.transform(test_text).toarray()
 
+# from sklearn.decomposition import PCA
+# pca = PCA(n_components=8).fit(train_matrix)
+# print (pca.explained_variance_ratio_)
+# data2D = pca.transform(train_matrix)
+# plt.scatter(data2D[:,0], data2D[:,1], c=target)
+# plt.show()
+
 # labels = df.category_id
 
 from sklearn.feature_selection import chi2
 print (train_matrix.shape) # 445 tweets are represented by 387 features.
 
-model = svm.SVC(kernel='linear', gamma=1) 
+model = svm.SVC(probability=True, kernel='linear')
 # there is various option associated with it, like changing kernel, gamma and C value. Will discuss more # about it in next section.Train the model using the training sets and check score
 model.fit(train_matrix, target)
 score = model.score(train_matrix, target)
 print (score)
 predict = model.predict(test_matrix)
 print (predict)
-print (np.transpose(test_class))
+# print (np.transpose(test_class))
 
-
-
-
+# splitting data into test and train
+X_train, X_test, y_train, y_test = train_test_split(train_matrix, target, test_size=0.01, random_state=0)
+print (X_train.shape, y_train.shape)
+print (X_test.shape, y_test.shape)
+# X_train = tf_vectorizer.fit_transform(X_train.values.astype('U')).toarray()
+clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
+score2 = clf.score(X_test, y_test)
+print (score2)
+predict2 = clf.predict(test_matrix)
+print (predict2)
 # plot_coefficients(model, cv.get_feature_names())
 
 

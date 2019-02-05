@@ -1,15 +1,27 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import stats
+from arcgis.geocoding import geocode
 
-# use seaborn plotting defaults
-import seaborn as sns; sns.set()
+results = geocode('New York St, Redlands, CA')
+# query the first matched result
+results[0]['location']
 
-from sklearn.datasets.samples_generator import make_blobs
-X, y = make_blobs(n_samples=50, centers=2,
-                  random_state=0, cluster_std=0.60)
-plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='autumn')
+# from sklearn.datasets import fetch_20newsgroups
+# from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+# from sklearn.decomposition import PCA
+# from sklearn.pipeline import Pipeline
+# import matplotlib.pyplot as plt
 
+# newsgroups_train = fetch_20newsgroups(subset='train', 
+#                                       categories=['alt.atheism', 'sci.space'])
+# pipeline = Pipeline([
+#     ('vect', CountVectorizer()),
+#     ('tfidf', TfidfTransformer()),
+# ])        
+# X = pipeline.fit_transform(newsgroups_train.data).todense()
+
+# pca = PCA(n_components=2).fit(X)
+# data2D = pca.transform(X)
+# plt.scatter(data2D[:,0], data2D[:,1], c=data.target)
+# plt.show()              #not required if using ipython notebook
 
 # import nltk
 # import csv
