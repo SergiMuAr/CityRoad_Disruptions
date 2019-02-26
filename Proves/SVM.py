@@ -52,21 +52,21 @@ test_class = data['Class']
 # print (tf)
 # print (tf_feature_names)
 
-tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2))
+tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=130, norm='l2', encoding='latin-1', ngram_range=(1, 2))
 train_matrix = tf_vectorizer.fit_transform(text.values.astype('U')).toarray()
 test_matrix = tf_vectorizer.transform(test_text).toarray()
+print (train_matrix.shape) # 445 tweets are represented by 387 features.
 
-# from sklearn.decomposition import PCA
-# pca = PCA(n_components=8).fit(train_matrix)
-# print (pca.explained_variance_ratio_)
-# data2D = pca.transform(train_matrix)
-# plt.scatter(data2D[:,0], data2D[:,1], c=target)
-# plt.show()
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2).fit(train_matrix)
+print (pca.explained_variance_ratio_)
+data2D = pca.transform(train_matrix)
+plt.scatter(data2D[:,0], data2D[:,1], c=target)
+plt.show()
 
 # labels = df.category_id
 
 from sklearn.feature_selection import chi2
-print (train_matrix.shape) # 445 tweets are represented by 387 features.
 
 model = svm.SVC(probability=True, kernel='linear')
 # there is various option associated with it, like changing kernel, gamma and C value. Will discuss more # about it in next section.Train the model using the training sets and check score
@@ -83,7 +83,7 @@ print (X_train.shape, y_train.shape)
 print (X_test.shape, y_test.shape)
 # X_train = tf_vectorizer.fit_transform(X_train.values.astype('U')).toarray()
 clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
-score2 = clf.score(X_test, y_test)
+score2 = clf.score  (X_test, y_test)
 print (score2)
 predict2 = clf.predict(test_matrix)
 print (predict2)
