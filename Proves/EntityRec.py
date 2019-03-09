@@ -30,7 +30,7 @@ def get_continuous_chunks(text):
 
     return continuous_chunk
 
-txt = "Retencions a Barcelona!" 
+txt = "⚠️🚗🚚Encara : Embús a l'AP-7 de Sant Cugat a Santa Perpètua -&gt;Girona per una topada d’un camió i dos turismes . Ara hi ha un carril tallat .També aturats a Santa Perpètua -&gt;sud. Afecta la B-30" 
 print (get_continuous_chunks(txt))
 
 ## https://nlpforhackers.io/named-entity-extraction/
@@ -204,3 +204,13 @@ print (get_continuous_chunks(txt))
 # print(chunker.parse(pos_tag(word_tokenize("I'm going to Germany this Monday."))))
 # print("#training samples = %s" % len(training_samples))  # training samples = 55809
 # print("#test samples = %s" % len(test_samples))  # test samples = 6201
+
+# from nltk import ne_chunk, pos_tag, word_tokenize
+# from nltk.tree import Tree
+# from nltk.chunk import conlltags2tree, tree2conlltags
+ 
+# sentence = "⚠️🚗🚚Encara : Embús a l'AP-7 de Sant Cugat a Santa Perpètua -&gt;Girona per una topada d’un camió i dos turismes . Ara hi ha un carril tallat .També aturats a Santa Perpètua -&gt;sud. Afecta la B-30"
+# ne_tree = ne_chunk(pos_tag(word_tokenize(sentence)))
+ 
+# iob_tagged = tree2conlltags(ne_tree)
+# print (iob_tagged)

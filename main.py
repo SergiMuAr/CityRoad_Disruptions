@@ -11,7 +11,7 @@ def listen (model):
 def main(args=sys.argv[1:]):
     df = args[0]
     dfprep = preprocess (df)
-    # model = trainModel(dfprep)
+    model = trainModel(dfprep)
 
     # listen (model)
     # showModel ()
