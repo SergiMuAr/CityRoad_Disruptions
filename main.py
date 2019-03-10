@@ -12,11 +12,9 @@ def listen (model):
 def main(args=sys.argv[1:]):
     df = args[0]
     preprocess (df)
-    model = trainModel()
-    tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2))
+    model = SVMmodel.trainModel()
     tweet = "heeeelooou estic parlant de qualssevol parida que no és el tema"
-    test_tweet = tf_vectorizer.transform([tweet]).toarray()
-    print(model.predict(test))
+    SVMmodel.predictText(tweet)
     # listen (model)
     # showModel ()
     # testModel (args[2])
