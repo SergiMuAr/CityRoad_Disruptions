@@ -9,13 +9,13 @@ from sklearn.model_selection import train_test_split
 
 data = pd.read_csv('TrainingDataSet/preprocessedDS.csv', sep = '\t', lineterminator='\n')
 text = data['Text']
-print (text)
+# print (text)
 target = data['Class']
 
 
 data = pd.read_csv('JocsDeProves/testBO.csv', sep = '\t', lineterminator='\n')
 test_text = data['Text']
-print (text)
+# print (text)
 test_class = data['Class']
 
 # data_test = pd.read_csv('JocsDeProves/testBO.csv',  sep = '\t', lineterminator='\n')
@@ -52,17 +52,19 @@ test_class = data['Class']
 # print (tf)
 # print (tf_feature_names)
 
-tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=130, norm='l2', encoding='latin-1', ngram_range=(1, 2))
+tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2))
 train_matrix = tf_vectorizer.fit_transform(text.values.astype('U')).toarray()
 test_matrix = tf_vectorizer.transform(test_text).toarray()
+tweet = "heeeelooou estic parlant de qualssevol parida que no és el tema"
+test_tweet = tf_vectorizer.transform([tweet]).toarray()
 print (train_matrix.shape) # 445 tweets are represented by 387 features.
 
-from sklearn.decomposition import PCA
-pca = PCA(n_components=2).fit(train_matrix)
-print (pca.explained_variance_ratio_)
-data2D = pca.transform(train_matrix)
-plt.scatter(data2D[:,0], data2D[:,1], c=target)
-plt.show()
+# from sklearn.decomposition import PCA
+# pca = PCA(n_components=2).fit(train_matrix)
+# print (pca.explained_variance_ratio_)
+# data2D = pca.transform(train_matrix)
+# plt.scatter(data2D[:,0], data2D[:,1], c=target)
+# plt.show()
 
 # labels = df.category_id
 
@@ -73,7 +75,7 @@ model = svm.SVC(probability=True, kernel='linear')
 model.fit(train_matrix, target)
 score = model.score(train_matrix, target)
 print (score)
-predict = model.predict(test_matrix)
+predict = model.predict(test_tweet)
 print (predict)
 # print (np.transpose(test_class))
 
@@ -85,7 +87,7 @@ print (X_test.shape, y_test.shape)
 clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
 score2 = clf.score  (X_test, y_test)
 print (score2)
-predict2 = clf.predict(test_matrix)
+predict2 = clf.predict(test_tweet)
 print (predict2)
 # plot_coefficients(model, cv.get_feature_names())
 

@@ -44,6 +44,4 @@ def preprocess (dataSet):
         
     data.to_csv('DataSet/preprocessed.csv', sep='\t')
 
-    return False
-
     # Em sembla que necessito passar-li stemmer per treure accents.
