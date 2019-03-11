@@ -12,9 +12,9 @@ def listen (model):
 def main(args=sys.argv[1:]):
     df = args[0]
     preprocess (df)
-    model = SVMmodel.trainModel()
-    tweet = "heeeelooou estic parlant de qualssevol parida que no és el tema"
-    SVMmodel.predictText(tweet)
+    svm = SVMmodel()
+    tweet = "Cues a Sant Boi de Llobregat per exhibicionistes provoquen un accident."
+    svm.predictText(tweet)
     # listen (model)
     # showModel ()
     # testModel (args[2])
