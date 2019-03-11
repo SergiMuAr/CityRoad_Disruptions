@@ -4,16 +4,13 @@ from datetime import datetime
 config = configparser.ConfigParser()
 config.read('/home/sergi/Documents/config.ini')
 apikey = config['api.keys']['MAPS_API_KEY']
-# gmaps = googlemaps.Client(key=apikey)
+print (apikey)
+gmaps = googlemaps.Client(key=str(apikey))
 
 # Geocoding an address
-# geocode_result = gmaps.geocode("🚙Continuen les CUES:
-# 🚧C-17 de la Llagosta a Montcada -&gt;BCN per obres 
-# De B-24 Cervelló a N-340 Vallirana -&gt;Tarragona 
-# C-14 entre Montblanc i Pira 
-# C-65 a Llambilles, a banda i banda",
-#                                 components={'administrative_area_level_1': 'CT'})
-# print (geocode_result[0]['geometry']['location'].lat)
+geocode_result = gmaps.geocode("Cues a Sant Boi de Llobregat per exhibicionistes provoquen un accident",
+                                components={'administrative_area_level_1': 'CT'})
+print (geocode_result[0]['geometry']['location'])
 # gmaps.geocode
 
 # def test_geocode_with_region_biasing(self):

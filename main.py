@@ -14,7 +14,7 @@ def main(args=sys.argv[1:]):
     df = args[0]
     preprocess (df)
     svm = SVMmodel()
-    tweet = "Cues a Sant Boi de Llobregat per exhibicionistes provoquen un accident."
+    tweet = "Cues a Sant Boi per exhibicionistes provoquen un accident."
     svm.predictText(tweet)
     gc = Geocoder()
     gc.geoCode(tweet)
