@@ -2,6 +2,7 @@ import sys
 from Preprocess import *
 from TopicModel import *
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from GeoCoding import *
 
 def listen (model):
     # connect to API twitter via Streaming and classify tweets.
@@ -15,6 +16,8 @@ def main(args=sys.argv[1:]):
     svm = SVMmodel()
     tweet = "Cues a Sant Boi de Llobregat per exhibicionistes provoquen un accident."
     svm.predictText(tweet)
+    gc = Geocoder()
+    gc.geoCode(tweet)
     # listen (model)
     # showModel ()
     # testModel (args[2])
