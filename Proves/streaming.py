@@ -1,7 +1,6 @@
 import tweepy
 import csv
 import configparser
-import apikey
 config = configparser.ConfigParser()
 config.read('/home/sergi/Documents/config.ini')
 auth = tweepy.OAuthHandler(config['api.keys']['TWITTER_CONSUMER_KEY'], config['api.keys']['TWITTER_CONSUMER_SECRET'])
@@ -9,6 +8,19 @@ auth.set_access_token(config['api.keys']['TWITTER_AUTH_TOKEN_KEY'], config['api.
 api = tweepy.API(auth)
 
 print (api)
+#override tweepy.StreamListener to add logic to on_status
+class MyStreamListener(tweepy.StreamListener):
+    
+    def on_error(self, status_code):
+        if status_code == 420:
+            #returning False in on_data disconnects the stream
+            return False
+
+    def on_status(self, status):
+        print(status.text)
+
+
+#---------------------------------------------------#
 
 # for status in tweepy.Cursor(api.user_timeline, screen_name='@transit').items():
 #     print (status._json['text'])

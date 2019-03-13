@@ -45,3 +45,5 @@ def preprocess (dataSet):
     data.to_csv('DataSet/preprocessed.csv', sep='\t')
 
     # Em sembla que necessito passar-li stemmer per treure accents.
+
+def processStream

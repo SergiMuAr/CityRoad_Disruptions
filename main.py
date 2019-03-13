@@ -14,14 +14,12 @@ def main(args=sys.argv[1:]):
     df = args[0]
     preprocess (df)
     svm = SVMmodel()
-    tweet = "Cues a Sant Boi per exhibicionistes provoquen un accident."
-    svm.predictText(tweet)
-    gc = Geocoder()
-    gc.geoCode(tweet)
-    # listen (model)
-    # showModel ()
-    # testModel (args[2])
-#  comprovacions dels resultats del model i comunicació amb API ARCGIS 
+    tweet = "➡️Retencions a la Ronda litoral de Zona Franca a Can Tunis -&gt;"
+    isTI = svm.predictText(tweet)
+    if (isTI):
+        gc = Geocoder()
+        gc.geoCode(tweet)
+    
 
 if __name__ == '__main__':
     main()

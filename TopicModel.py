@@ -36,3 +36,4 @@ class SVMmodel:
     def predictText(self,text):
         text_test = self._tf_vectorizer.transform([text]).toarray()
         print(self._clf.predict(text_test))
+        return self._clf.predict(text_test)[0]
