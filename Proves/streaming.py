@@ -17,7 +17,16 @@ class MyStreamListener(tweepy.StreamListener):
             return False
 
     def on_status(self, status):
-        print(status.text)
+        text = status.text
+        location = "ini"
+        geo = "ini"
+        if hasattr(status, "location"):
+            location = status.location
+
+        if hasattr(status,"geo_enable"):
+            geo = status.geo_enable
+
+        print(status.text, location, geo)
 
 
 #---------------------------------------------------#
