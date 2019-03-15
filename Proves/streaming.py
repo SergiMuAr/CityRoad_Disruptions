@@ -16,6 +16,9 @@ class MyStreamListener(tweepy.StreamListener):
             #returning False in on_data disconnects the stream
             return False
 
+        print ('Encountered error with status code:', status_code)
+        return True # Don't kill the stream
+
     def on_status(self, status):
         text = status.text
         location = "ini"
@@ -27,6 +30,21 @@ class MyStreamListener(tweepy.StreamListener):
             geo = status.geo_enable
 
         print(status.text, location, geo)
+        
+    def on_timeout(self):
+        print ('Timeout...')
+        return True # Don't kill the stream
+
+# Create a streaming API and set a timeout value of 60 seconds.
+
+# streaming_api = tweepy.streaming.Stream(auth, CustomStreamListener(), timeout=60)
+
+# # Optionally filter the statuses you want to track by providing a list
+# # of users to "follow".
+
+# print >> sys.stderr, 'Filtering the public timeline for "%s"' % (' '.join(sys.argv[1:]),)
+
+# streaming_api.filter(follow=None, track=Q)
 
 
 #---------------------------------------------------#
