@@ -34,10 +34,10 @@ class MyStreamListener(tweepy.StreamListener):
             print(str(ex))
         finally:
             return _producer
-
+    
     def fesAlgo(self):
         print ('faig algo')
-    
+        
     def on_error(self, status_code):
         if status_code == 420:
             #returning False in on_data disconnects the stream
@@ -57,7 +57,7 @@ class MyStreamListener(tweepy.StreamListener):
             geo = status.geo_enable
         
         kafka_producer = self.connect_kafka_producer()
-        self.publish_message(kafka_producer, 'topic_test', 'tw', status.text)
+        self.publish_message(kafka_producer, 'dataStream', 'tweet', status.text)
         if kafka_producer is not None:
             kafka_producer.close()
         self.fesAlgo()
@@ -66,41 +66,3 @@ class MyStreamListener(tweepy.StreamListener):
     def on_timeout(self):
         print ('Timeout...')
         return True # Don't kill the stream
-
-# Create a streaming API and set a timeout value of 60 seconds.
-
-# streaming_api = tweepy.streaming.Stream(auth, CustomStreamListener(), timeout=60)
-
-# # Optionally filter the statuses you want to track by providing a list
-# # of users to "follow".
-
-# print >> sys.stderr, 'Filtering the public timeline for "%s"' % (' '.join(sys.argv[1:]),)
-
-# streaming_api.filter(follow=None, track=Q)
-
-
-#---------------------------------------------------#
-
-# for status in tweepy.Cursor(api.user_timeline, screen_name='@transit').items():
-#     print (status._json['text'])
-
-# # Open/create a file to append data to
-# csvFile = open('guardiaUrbana.csv', 'a')
-
-# #Use csv writer
-# csvWriter = csv.writer(csvFile)
-
-# # # Els RT's no els retorna sencers moltes vegades
-# # for status in tweepy.Cursor(api.user_timeline, screen_name='@transit', tweet_mode = 'extended').items(500):
-# #     # Write a row to the CSV file. I use encode UTF-8
-# #     # csvWriter.writerow([tweet.created_at, tweet.text])
-# #     print (status.full_text)
-# # csvFile.close()
-# for tweet_info in tweepy.Cursor(api.user_timeline, screen_name='@barcelona_GUB', tweet_mode='extended').items(500):
-#     if 'retweeted_status' in dir(tweet_info):
-#         tweet=tweet_info.retweeted_status.full_text
-#     else:
-#         tweet=tweet_info.full_text
-#     # print (tweet)
-#     csvWriter.writerow([tweet])
-# csvFile.close()
