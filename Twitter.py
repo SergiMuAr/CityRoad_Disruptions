@@ -10,6 +10,12 @@ auth.set_access_token(config['api.keys']['TWITTER_AUTH_TOKEN_KEY'], config['api.
 api = tweepy.API(auth)
 
 print (api)
+
+def initListener():
+    myStreamListener = MyStreamListener()
+    myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
+    myStream.filter(follow = ["988457597241118720"])
+
 #override tweepy.StreamListener to add logic to on_status
 class MyStreamListener(tweepy.StreamListener):
 
@@ -34,10 +40,7 @@ class MyStreamListener(tweepy.StreamListener):
             print(str(ex))
         finally:
             return _producer
-    
-    def fesAlgo(self):
-        print ('faig algo')
-        
+            
     def on_error(self, status_code):
         if status_code == 420:
             #returning False in on_data disconnects the stream
@@ -47,7 +50,8 @@ class MyStreamListener(tweepy.StreamListener):
         return True # Don't kill the stream
 
     def on_status(self, status):
-        text = status.text
+        import unidecode
+        text = unidecode.unidecode(status.text)
         location = "ini"
         geo = "ini"
         if hasattr(status, "location"):
@@ -57,12 +61,14 @@ class MyStreamListener(tweepy.StreamListener):
             geo = status.geo_enable
         
         kafka_producer = self.connect_kafka_producer()
-        self.publish_message(kafka_producer, 'dataStream', 'tweet', status.text)
+        self.publish_message(kafka_producer, 'dataStream2', 'tweet', text)
         if kafka_producer is not None:
             kafka_producer.close()
-        self.fesAlgo()
         print(status.text, location, geo)
         
     def on_timeout(self):
         print ('Timeout...')
         return True # Don't kill the stream
+
+
+initListener()

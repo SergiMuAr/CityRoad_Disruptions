@@ -12,4 +12,9 @@ class Geocoder:
     def geoCode(self,tweet):
         # Geocoding an address
         geocode_result = self.gmaps.geocode(tweet, components={'administrative_area_level_1': 'CT'})
-        print (geocode_result[0]['geometry']['location'])
+        if geocode_result:
+            return geocode_result[0]['geometry']['location']
+
+    def preprocess(self,tweet):
+        tweets = tweet.split("\n")
+        return tweets

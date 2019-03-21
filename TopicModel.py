@@ -28,9 +28,9 @@ class SVMmodel:
         # X_train = tf_vectorizer.fit_transform(X_train.values.astype('U')).toarray()
         self._clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
         score2 = self._clf.score(X_test, y_test)
-        print (score2)
+        # print (score2)
         predict2 = self._clf.predict(test_matrix)
-        print (predict2)
+        # print (predict2)
 
     
     def predictText(self,text):
