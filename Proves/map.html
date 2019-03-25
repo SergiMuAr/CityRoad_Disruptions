@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="apikey.js"></script>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Incidències</title>
@@ -37,12 +36,14 @@
         });
       }
 
-      function addMarker(LatLong){
-        new google.maps.Marker({
-          position = LatLong,
-          map: map
+      function addMarker(location, map) {
+        var marker = new google.maps.Marker({
+            position: location,
+            title: 'Home Center',
+            map:map
         });
       }
+      google.maps.event.addDomListener(window, 'load', initMap);
     </script>
     <script async defer
     src="/home/sergi/Documents/maps.js">
