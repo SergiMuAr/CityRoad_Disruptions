@@ -1,9 +1,12 @@
 # import gmplot package 
 import gmplot 
-  
-# GoogleMapPlotter return Map object 
-# Pass the center latitude and 
-# center longitude 
-gmap = gmplot.GoogleMapPlotter(30.3164945, 78.03219179999999, 13) 
-gmap.marker(30.3164945, 78.03219179999999, title="A street corner in Seattle")
+import configparser
+
+config = configparser.ConfigParser()
+config.read('/home/sergi/Documents/config.ini')
+gmap = gmplot.GoogleMapPlotter(41.390205, 2.154007, 13,apikey= config['api.keys']['MAPS_API_KEY'])
+
+for 
+gmap.marker(, , title="A street corner in Seattle")
 gmap.draw( "/home/sergi/CityRoad_Disruptions/Proves/map2.html" )
+
