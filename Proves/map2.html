@@ -6,7 +6,7 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true_or_false&key=AIzaSyBdvcf4_Kh86fteBy0koVH34gZ1i5QCCK0"></script>
 <script type="text/javascript">
 	function initialize() {
-		var centerlatlng = new google.maps.LatLng(30.316495, 78.032192);
+		var centerlatlng = new google.maps.LatLng(41.390205, 2.154007);
 		var myOptions = {
 			zoom: 13,
 			center: centerlatlng,
@@ -14,10 +14,19 @@
 		};
 		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-		var latlng = new google.maps.LatLng(30.316495, 78.032192);
+		var latlng = new google.maps.LatLng(41.380571, 2.182075);
 		var img = new google.maps.MarkerImage('/home/sergi/.local/lib/python3.6/site-packages/gmplot/markers/FF0000.png');
 		var marker = new google.maps.Marker({
-		title: "A street corner in Seattle",
+		title: "RT @transit:  Retencions a la Ronda Litoral (B-10) de Zona Franca a Barceloneta  Trinitat per un #accident 1 carril tallat https://t.co/d...",
+		icon: img,
+		position: latlng
+		});
+		marker.setMap(map);
+
+		var latlng = new google.maps.LatLng(41.177373, 1.415086);
+		var img = new google.maps.MarkerImage('/home/sergi/.local/lib/python3.6/site-packages/gmplot/markers/FF0000.png');
+		var marker = new google.maps.Marker({
+		title: "RT @equipviari: [?][?]Accident a l'AP-7 a #LaPoblaDeMontornes PK 231 -&gt; Tarragona. 1 carril tallat. Retencions #equipviari",
 		icon: img,
 		position: latlng
 		});

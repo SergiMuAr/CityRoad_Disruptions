@@ -5,15 +5,15 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from GeoCoding import *
 from kafka import KafkaConsumer, KafkaProducer
 import json
-# from gmaps import *
+from gmaps import *
 from sqlite import * 
 
 # def main(args=sys.argv[1:]):
 #     df = args[0]
 #     preprocess (df)
 def main():
-    conn = create_connection() 
-    create_table_models(conn)
+    db = Sqlite()
+    db.create_table_models()
     gc = Geocoder()
     svm = SVMmodel()
     consumer = KafkaConsumer('dataStream2', auto_offset_reset='earliest',
@@ -30,10 +30,11 @@ def main():
                 print (geoloc)
                 # add to database
                 model = (tw, geoloc["lat"], geoloc["lng"])
-                model_id = insert_row (conn, model) 
+                model_id = db.insert_row (model) 
                 print (model_id)
                 # visualitzar incidencia
-                selectAll(conn)
+                incidencies = db.selectAll()
+                visualizeMap (incidencies)
                 
                 
     
