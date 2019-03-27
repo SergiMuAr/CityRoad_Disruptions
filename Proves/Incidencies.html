@@ -14,10 +14,19 @@
 		};
 		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-		var latlng = new google.maps.LatLng(41.378420, 2.145272);
+		var latlng = new google.maps.LatLng(41.435734, 2.003202);
 		var img = new google.maps.MarkerImage('/home/sergi/.local/lib/python3.6/site-packages/gmplot/markers/FF0000.png');
 		var marker = new google.maps.Marker({
-		title: "b"RT @transit: [?] Un carril tallat a l'AP-7 a Tarragona  BCN per un vehicle avariat  Circuleu amb #precaucio https://t.co/5DSaHOkqsD"",
+		title: "B-23 de Molins de Rei al Papiol -&gt;Girona ",
+		icon: img,
+		position: latlng
+		});
+		marker.setMap(map);
+
+		var latlng = new google.maps.LatLng(41.357383, 2.070716);
+		var img = new google.maps.MarkerImage('/home/sergi/.local/lib/python3.6/site-packages/gmplot/markers/FF0000.png');
+		var marker = new google.maps.Marker({
+		title: "A-2 a Cornella , a banda i banda ",
 		icon: img,
 		position: latlng
 		});

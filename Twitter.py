@@ -51,7 +51,7 @@ class MyStreamListener(tweepy.StreamListener):
 
     def on_status(self, status):
         import unidecode
-        text = unidecode.unidecode(status.text)
+        text = unidecode.unidecode(status._json["retweeted_status"]["text"])
         location = "ini"
         geo = "ini"
         if hasattr(status, "location"):
@@ -64,7 +64,7 @@ class MyStreamListener(tweepy.StreamListener):
         self.publish_message(kafka_producer, 'dataStream2', 'tweet', text)
         if kafka_producer is not None:
             kafka_producer.close()
-        print(status.text, location, geo)
+        print(text, location, geo)
         
     def on_timeout(self):
         print ('Timeout...')

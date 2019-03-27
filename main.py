@@ -20,21 +20,23 @@ def main():
                                 bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=-1)
     for msg in consumer:
         tweet = msg.value
+        print (tweet)
         isIT = svm.predictText(tweet)
-        print (isIT)
+        # print (isIT)
         if (isIT):
-            tweet = tweet.decode("utf-8")
-            tweets = tweet.split("\n")
+            tweetaux = tweet.decode("utf-8")
+            tweets = tweetaux.split("\n")
             for tw in tweets:
                 geoloc = gc.geoCode(tw)
-                print (geoloc)
+                # print (tw)
                 # add to database
-                model = (tw, geoloc["lat"], geoloc["lng"])
-                model_id = db.insert_row (model) 
-                print (model_id)
-                # visualitzar incidencia
-                incidencies = db.selectAll()
-                visualizeMap (incidencies)
+                if (geoloc is not None):
+                    model = (tw, geoloc["lat"], geoloc["lng"])
+                    model_id = db.insert_row (model) 
+                    # visualitzar incidencia
+                    # print ("VISUALITZO", tw)
+                    incidencies = db.selectAll()
+                    visualizeMap (incidencies)
                 
                 
     
