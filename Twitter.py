@@ -13,7 +13,7 @@ print (api)
 
 def initListener():
     myStreamListener = MyStreamListener()
-    myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
+    myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = 'extended')
     myStream.filter(follow = ["988457597241118720"])
 
 #override tweepy.StreamListener to add logic to on_status
@@ -51,7 +51,19 @@ class MyStreamListener(tweepy.StreamListener):
 
     def on_status(self, status):
         import unidecode
-        text = unidecode.unidecode(status._json["retweeted_status"]["text"])
+        # print (status._json['retweeted_status']['extended_tweet']['full_text'])
+        # text = unidecode.unidecode(status._json['retweeted_status']['extended_tweet']['full_text'])
+        if 'retweeted_status' in status._json:
+            if 'extended_tweet' in status._json['retweeted_status']:
+                text = status._json['retweeted_status']['extended_tweet']['full_text']
+            else:
+                text = status._json['retweeted_status']['text']
+        else:
+            if 'extended_tweet' in status._json:
+                text = status._json['extended_tweet']['full_text']
+            else: 
+                text = unidecode.unidecode(status.text)
+
         location = "ini"
         geo = "ini"
         if hasattr(status, "location"):

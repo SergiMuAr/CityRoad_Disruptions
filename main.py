@@ -18,11 +18,11 @@ def main():
     svm = SVMmodel()
     consumer = KafkaConsumer('dataStream2', auto_offset_reset='earliest',
                                 bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=-1)
-    for msg in consumer:
+    for msg in consumer:        
         tweet = msg.value
         print (tweet)
         isIT = svm.predictText(tweet)
-        # print (isIT)
+        print (isIT)
         if (isIT):
             tweetaux = tweet.decode("utf-8")
             tweets = tweetaux.split("\n")
