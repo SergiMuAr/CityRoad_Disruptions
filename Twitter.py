@@ -15,7 +15,10 @@ def initListener():
     myStreamListener = MyStreamListener()
     myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = 'extended')
     myStream.filter(follow = ["988457597241118720"])
-
+    # myStream.filter(track=['cua, cues, incidencia, incident, ⚠, 🚗, retenció, retencions, transit, trafic, aturada, aturat, circulacio, lenta, lent, carril, via, alteració, desviament, tallat, tallada, tancat'], 
+    #                 follow = ["988457597241118720"])
+    # myStream.filter(track=['cua, cues, incidencia, incident, ⚠, 🚗, retenció, retencions, transit, trafic, aturada, aturat, circulacio, lenta, lent, carril, via, alteració, desviament, tallat, tallada, tancat'], 
+    #                 follow = ["988457597241118720"])
 #override tweepy.StreamListener to add logic to on_status
 class MyStreamListener(tweepy.StreamListener):
 
