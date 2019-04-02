@@ -1,6 +1,6 @@
 import sys
-from Preprocess import *
-from TopicModel import *
+from PreprocessText import *
+from Classifier import *
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from GeoCoding import *
 from kafka import KafkaConsumer, KafkaProducer
@@ -19,12 +19,13 @@ def main():
     consumer = KafkaConsumer('dataStream2', auto_offset_reset='earliest',
                                 bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=-1)
     for msg in consumer:        
-        tweet = msg.value
+        tweet = preprocessText(msg.value.decode("utf-8"))
+        # tweet = msg.value.decode("utf-8")
         print (tweet)
         isIT = svm.predictText(tweet)
         print (isIT)
         if (isIT):
-            tweetaux = tweet.decode("utf-8")
+            tweetaux = msg.value.decode("utf-8")
             tweets = tweetaux.split("\n")
             for tw in tweets:
                 geoloc = gc.geoCode(tw)
@@ -32,7 +33,7 @@ def main():
                 print (geoloc)
                 # add to database
                 if (geoloc is not None):
-                    model = (tw, geoloc["lat"], geoloc["lng"])
+                    model = (msg.value, geoloc["lat"], geoloc["lng"])
                     model_id = db.insert_row (model) 
                     # visualitzar incidencia
                     # print ("VISUALITZO", tw)

@@ -80,7 +80,7 @@ print (predict)
 # print (np.transpose(test_class))
 
 # splitting data into test and train
-X_train, X_test, y_train, y_test = train_test_split(train_matrix, target, test_size=0.01, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(train_matrix, target, test_size=0.01, random_state=None)
 print (X_train.shape, y_train.shape)
 print (X_test.shape, y_test.shape)
 # X_train = tf_vectorizer.fit_transform(X_train.values.astype('U')).toarray()
@@ -121,3 +121,21 @@ print (predict2)
 # plt.xlim(xx.min(), xx.max())
 # plt.title('SVC with linear kernel')
 # plt.show()
+
+
+from sklearn.decomposition import NMF, LatentDirichletAllocation
+
+def display_topics(model, feature_names, no_top_words):
+    for topic_idx, topic in enumerate(model.components_):
+        print ("Topic:")
+        print (topic_idx)
+        print (" ".join([feature_names[i]
+                        for i in topic.argsort()[:-no_top_words - 1:-1]]))
+
+lda = LatentDirichletAllocation(n_components=2, max_iter=100, learning_method='online', learning_offset=50.,random_state=None).fit(train_matrix)
+print("Log Likelihood: ", lda.score(train_matrix))
+print(lda.get_params())
+no_top_words = 15
+# display_topics(nmf, tfidf_feature_names, no_top_words)
+tf_feature_names = tf_vectorizer.get_feature_names()
+display_topics(lda, tf_feature_names, no_top_words)
