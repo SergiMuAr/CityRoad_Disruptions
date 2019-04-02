@@ -28,7 +28,8 @@ def main():
             tweets = tweetaux.split("\n")
             for tw in tweets:
                 geoloc = gc.geoCode(tw)
-                # print (tw)
+                print (tw)
+                print (geoloc)
                 # add to database
                 if (geoloc is not None):
                     model = (tw, geoloc["lat"], geoloc["lng"])
