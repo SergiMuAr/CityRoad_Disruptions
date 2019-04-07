@@ -49,7 +49,5 @@ class Sqlite:
 
         rows = cur.fetchall()
         return rows
-        for row in rows:
-            print(row)
 
 
