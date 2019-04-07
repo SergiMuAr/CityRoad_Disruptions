@@ -16,6 +16,9 @@ from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 import csv
 import pandas as pd
 from sklearn.pipeline import Pipeline
+from sklearn.metrics import *
+from sklearn.model_selection import learning_curve, GridSearchCV, RandomizedSearchCV, cross_val_score
+
 
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
@@ -34,7 +37,7 @@ test_matrix = tf_vectorizer.transform(test_text).toarray()
 # print (train_matrix.shape) # 445 tweets are represented by 387 features.
 
 # splitting data into test and train
-X_train, X_test, y_train, y_test = train_test_split(train_matrix, target, test_size=0.01, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(train_matrix, target, test_size=0.3, random_state=0)
 
 classifiers = [
     SVC(kernel="linear", C=0.025),
@@ -54,7 +57,7 @@ names = ["Linear SVM", "RBF SVM", "Gaussian Process",
 
 # Scoring and metrics
 scaler = ('scaler', StandardScaler())
-for clf, label in zip(names, classifiers):
+for clf, label in zip(classifiers, names):
     
     pipe = Pipeline([scaler, (label, clf)])
     pipe.fit(X_train, y_train)
@@ -73,18 +76,17 @@ for clf, label in zip(names, classifiers):
     print(f'f1-score weighted: {f1_score(y_test, y_pred, pos_label=1, labels=[1, 0], average="weighted") :.3f}' + '\n\n')
 
 
-# # Cross validation
-# for clf, label, pca_c in zipper:
-#     #pca = ('pca', PCA(n_components=pca_c))
-#     pipe = Pipeline([scaler, (label, clf)])
-#     scores = cross_val_score(pipe, X_train, y_train, cv=5, scoring='accuracy', n_jobs=-1)
-#     print("Accuracy: %0.3f (+/- %0.3f) [%s] <br>" % (scores.mean(), scores.std(), label))
+# Cross validation
+for clf, label in zip(classifiers, names):
+    pipe = Pipeline([scaler, (label, clf)])
+    scores = cross_val_score(pipe, X_train, y_train, cv=5, scoring='accuracy', n_jobs=-1)
+    print("Accuracy: %0.3f (+/- %0.3f) [%s] <br>" % (scores.mean(), scores.std(), label))
 
 
 # # Hyperparameter tuning with RandomizedSerach
 # random_search = RandomizedSearchCV(estimator=pipe, param_distributions=params, n_iter=n_iter, cv=3,
 #                                        scoring=scorer,
 #                                        verbose=True, n_jobs=-1)
-#     start = time.time()
-#     random_search.fit(X_train, y_train)
-#     print(f'RandomizedSearchCV took {time.time() - start:.2f} seconds for {n_iter} candidates parameter settings.')
+# start = time.time()
+# random_search.fit(X_train, y_train)
+# print(f'RandomizedSearchCV took {time.time() - start:.2f} seconds for {n_iter} candidates parameter settings.')
