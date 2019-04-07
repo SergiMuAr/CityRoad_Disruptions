@@ -12,7 +12,8 @@ from sqlite import *
 #     df = args[0]
 #     preprocess (df)
 def main():
-    db = Sqlite()
+    db = Sqlite(None)
+    statistics = Sqlite('/home/sergi/CityRoad_Disruptions/statistics.db')
     db.create_table_models()
     gc = Geocoder()
     svm = SVMmodel()

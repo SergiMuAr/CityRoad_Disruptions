@@ -2,15 +2,22 @@ import sqlite3
 from sqlite3 import Error
 
 class Sqlite:
-    def __init__(self):
+    def __init__(self, dbfile):
         """ create a database connection to a database that resides
             in the memory
         """
-        try:
-            self.conn = sqlite3.connect(':memory:')
-            print(sqlite3.version)
-        except Error as e:
-            print(e)
+        if (dbfile is None):
+            try:
+                self.conn = sqlite3.connect(':memory:')
+                print(sqlite3.version)
+            except Error as e:
+                print(e)
+        else:
+            try:
+                self.conn = sqlite3.connect(dbfile)
+                print(sqlite3.version)
+            except Error as e:
+                print(e)
         return None
 
     def close_connection(self):
@@ -35,6 +42,26 @@ class Sqlite:
             print ("DB opened")
         except Error as e:
             print(e)
+
+    def create_table_statistics(self):
+        """ create a table from the create_table_sql statement
+        :param conn: Connection object
+        :param create_table_sql: a CREATE TABLE statement
+        :return:
+        """
+        sql_create = """ CREATE TABLE IF NOT EXISTS stats (
+                                    tweet text NOT NULL,
+                                    isTI bool,
+                                    isGob bool,
+                                    isInd bool,
+                                    isGeo bool
+                                ); """
+        try:
+            c = self.conn.cursor()
+            c.execute(sql_create)
+            print ("DB opened")
+        except Error as e:
+            print(e)            
 
     def insert_row (self, model):
         sql = ''' INSERT INTO models(tweet,latitude,longitude)

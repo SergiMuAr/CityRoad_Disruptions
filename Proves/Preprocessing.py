@@ -8,7 +8,6 @@ from nltk.tokenize.toktok import ToktokTokenizer
 
 csvFile = open('TrainingDataSet/stemmedNTI.csv', 'w')
 csvWriter = csv.writer(csvFile)
-# NETEJAR -&gt DE LES DADES.
 
 with open('TrainingDataSet/trainingDataSet.csv') as f:
   reader = csv.reader(f)
@@ -73,7 +72,7 @@ with open('TrainingDataSet/trainingDataSet.csv') as f:
 
 
     # LEMMATIZER
-    #encoding: utf8
+    # encoding: utf8
     # with open('lemmatization-es.txt', 'rb') as f:
     #   data = f.read().decode('utf8').replace(u'\r', u'').split(u'\n')
     #   data = [a.split(u'\t') for a in data]

@@ -18,6 +18,3 @@ class Geocoder:
     def preprocess(self,tweet):
         tweets = tweet.split("\n")
         return tweets
-
-gc = Geocoder()
-print (gc.geoCode("Aturats a l'AP-7 a Santa Perpètua De Mogoda -> sud, per accident #equipviari"))

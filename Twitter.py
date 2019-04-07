@@ -14,9 +14,11 @@ print (api)
 def initListener():
     myStreamListener = MyStreamListener()
     myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = 'extended')
-    myStream.filter(follow = ["988457597241118720"])
-    # myStream.filter(track=['cua, cues, incidencia, incident, ⚠, 🚗, retenció, retencions, transit, trafic, aturada, aturat, circulacio, lenta, lent, carril, via, alteració, desviament, tallat, tallada, tancat'], 
+    # myStream.filter(follow = ["988457597241118720"])
+    # myStream.filter(track=['accident, cua, cues, incidencia, incident, retenció, retencions, transit, trafic, aturada, aturat, aturats, circulacio, circulació, carril, via, alteració, desviament, tallat, tallada, tall, tancat'], 
     #                 follow = ["988457597241118720"])
+    myStream.filter(languages = ['ca'], track=['cua', 'cues', 'incidencia', 'retenció', 'retencions', 'aturada', 'aturat', 'aturats', 'circulacio', 'circulació', 'carril', 'alteració', 'desviament', 'tallat', 'tallada', 'tall', 'tancat'], 
+                follow = ["988457597241118720"])
     # myStream.filter(track=['cua, cues, incidencia, incident, ⚠, 🚗, retenció, retencions, transit, trafic, aturada, aturat, circulacio, lenta, lent, carril, via, alteració, desviament, tallat, tallada, tancat'], 
     #                 follow = ["988457597241118720"])
 #override tweepy.StreamListener to add logic to on_status
@@ -75,11 +77,12 @@ class MyStreamListener(tweepy.StreamListener):
         if hasattr(status,"geo_enable"):
             geo = status.geo_enable
         
-        kafka_producer = self.connect_kafka_producer()
-        self.publish_message(kafka_producer, 'dataStream2', 'tweet', text)
-        if kafka_producer is not None:
-            kafka_producer.close()
+        # kafka_producer = self.connect_kafka_producer()
+        # self.publish_message(kafka_producer, 'dataStream2', 'tweet', text)
+        # if kafka_producer is not None:
+        #     kafka_producer.close()
         print(text, location, geo)
+
         
     def on_timeout(self):
         print ('Timeout...')
