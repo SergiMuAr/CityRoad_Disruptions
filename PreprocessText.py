@@ -8,15 +8,13 @@ from nltk.tokenize.toktok import ToktokTokenizer
 
 def preprocessText (text):
     txt = str(text)
-    # print("MIRA AQUÍ", txt)
     # Tokenize tweets. Word splitting.
-    toktok = ToktokTokenizer()
-    txt = re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', '', ''.join(txt).rstrip(), flags=re.MULTILINE)
+    exclusionList = [r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b','-&gt']
+    exclusions = '|'.join(exclusionList)
+    txt = re.sub(exclusions, '', ''.join(txt).rstrip(), flags=re.MULTILINE)
     tokens = toktok.tokenize(txt)
     words = tokens
     words = [word.lower() for word in words]
-
-
     from stopwords_ca import get_stopwords 
     emoji_pattern = re.compile("["
                         u"\U0001F600-\U0001F64F"  # emoticons
@@ -32,13 +30,6 @@ def preprocessText (text):
     table = str.maketrans('', '', ''.join([string.punctuation,"’"]))
     words = [w.translate(table) for w in words]
 
-    # Filter only if word is alphabetic characters only. (fer que AP-7 també estigui acceptat -> guions i numeros)
-    # words = [word for word in words if word.isalnum()]
-    # print ("AIXÒ SÓN WORDS FINALS:")
-    # words (words)
-    #convert to lowercase
-
     import unidecode
     unaccented_string = unidecode.unidecode(','.join(words))
     return unaccented_string
-# Em sembla que necessito passar-li stemmer per treure accents.
