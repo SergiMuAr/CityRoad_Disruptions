@@ -12,6 +12,7 @@ def preprocessText (text):
     exclusionList = [r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b','-&gt']
     exclusions = '|'.join(exclusionList)
     txt = re.sub(exclusions, '', ''.join(txt).rstrip(), flags=re.MULTILINE)
+    toktok = ToktokTokenizer()
     tokens = toktok.tokenize(txt)
     words = tokens
     words = [word.lower() for word in words]

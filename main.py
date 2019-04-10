@@ -3,25 +3,29 @@ from PreprocessText import *
 from Classifier import *
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from GeoCoding import *
-from kafka import KafkaConsumer, KafkaProducer
-import json
+from kafka import KafkaConsumer
 from gmaps import *
 from sqlite import * 
+from Twitter import initStreaming
 
-# def main(args=sys.argv[1:]):
-#     df = args[0]
-#     preprocess (df)
+# def initInstances():
+
+
 def main():
     db = Sqlite(None)
     statistics = Sqlite('/home/sergi/CityRoad_Disruptions/statistics.db')
     db.create_table_models()
+    statistics.create_table_statistics()
     gc = Geocoder()
     svm = SVMmodel()
-    consumer = KafkaConsumer('dataStream2', auto_offset_reset='earliest',
+
+    print ("HEYhooolaa")
+    kafka = KafkaConsumer('dataStream2', auto_offset_reset='earliest',
                                 bootstrap_servers=['localhost:9092'], api_version=(0, 10), consumer_timeout_ms=-1)
-    for msg in consumer:        
+    # initInstances()
+    for msg in kafka:        
+        print ("HEYHEYEHYYYYY")
         tweet = preprocessText(msg.value.decode("utf-8"))
-        # tweet = msg.value.decode("utf-8")
         print (tweet)
         isIT = svm.predictText(tweet)
         print (isIT)
