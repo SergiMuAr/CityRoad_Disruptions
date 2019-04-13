@@ -33,8 +33,8 @@ class MyStreamListener(tweepy.StreamListener):
         
         self.counter = self.counter + 1
         print (self.counter)
-        print (status._json['user']['name'], text)
-        self.kafka_producer.publish_message("dataStream2", status._json['user']['name'], text)
+        print (status._json['user']['id_str'], text)
+        self.kafka_producer.publish_message("dataStream2", status._json['user']['id_str'], text)
         # self.publish_message(self.kafka_producer, 'dataStream2', 'tweet', text)
 
         

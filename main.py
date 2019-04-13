@@ -37,12 +37,12 @@ def main():
                 model = (nlp.prepareToVisualize(tweet), None, None)
                 db.insert_model (model)
         
-        # if name in list:
-            # isGob = True
-        # else:
-            # isInd = True
-        # stat = (tweet,isTI,isGob,isInd,ubicat) 
-        # print ("FAIG INSERT STAT", stat)
-        # statistics.insert_stat(stat)
+        if name in list:
+            isGob = True
+        else:
+            isInd = True
+        stat = (tweet,isTI,isGob,isInd,ubicat) 
+        print ("FAIG INSERT STAT", stat)
+        statistics.insert_stat(stat)
 if __name__ == '__main__':
     main()

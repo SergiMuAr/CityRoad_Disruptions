@@ -19,3 +19,41 @@ for msg in kafka:
     print ("HOLA3",txt)
     # print (json.loads(txt)['tweet'])
 
+
+@bcn_mobilitat => 123851794
+
+@transitc32nord => 412411621
+
+@catinformacio => 262606630
+
+@maticatradio => 59775384
+
+@rac1 => 18577646
+
+@catalunyaradio => 7679392
+
+@clubracc => 155930023
+
+@interiorcat => 110647916
+
+@tv3cat => 28373820
+
+@324cat => 8330472
+
+@gencat => 27477225
+
+@equipviari => 274008117
+
+@mossos => 110946158
+
+@bomberscat => 110946582
+
+@emergenciescat => 121146038
+
+@transit => 112385035
+
+@tmb_barcelona => 115624105
+
+@bcn_ajuntament => 423369901
+
+@policia => 23791197

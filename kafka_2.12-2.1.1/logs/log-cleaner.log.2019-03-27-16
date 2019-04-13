@@ -1,0 +1,4 @@
+[2019-03-27 16:19:32,962] INFO Starting the log cleaner (kafka.log.LogCleaner)
+[2019-03-27 16:19:33,014] INFO [kafka-log-cleaner-thread-0]: Starting (kafka.log.LogCleaner)
+[2019-03-27 16:22:11,691] INFO The cleaning for partition dataStream2-0 is aborted and paused (kafka.log.LogCleaner)
+[2019-03-27 16:22:11,691] INFO The cleaning for partition dataStream2-0 is aborted (kafka.log.LogCleaner)
