@@ -11,9 +11,10 @@ def initStreaming():
     api = tweepy.API(auth)
     myStreamListener = MyStreamListener()
     myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener, tweet_mode = 'extended')
-    # myStream.filter(follow = ["988457597241118720"])
+    # myStream.filter(follow = ["274008117"])
+    # jo, tmbinfo, 
     # myStream.filter(track=['accident, cua, cues, incidencia, incident, retenció, retencions, transit, trafic, aturada, aturat, aturats, circulacio, circulació, carril, via, alteració, desviament, tallat, tallada, tall, tancat'], 
-    #                 follow = ["988457597241118720"])
+    #                 follow = ["988457597241118720","1116634987", "274008117"])
     myStream.filter(languages = ['ca'], track=['cua', 'cues', 'incidencia', 'retenció', 'retencions', 'aturada', 'aturat', 'aturats', 'circulacio', 'circulació', 'carril', 'alteració', 'desviament', 'tallat', 'tallada', 'tall', 'tancat'], 
                 follow = ["988457597241118720"])
     # myStream.filter(track=['cua, cues, incidencia, incident, ⚠, 🚗, retenció, retencions, transit, trafic, aturada, aturat, circulacio, lenta, lent, carril, via, alteració, desviament, tallat, tallada, tancat'], 

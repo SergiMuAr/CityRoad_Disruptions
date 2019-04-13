@@ -12,9 +12,9 @@ class SVMmodel:
         data = pd.read_csv('DataSet/preprocessed.csv', sep = '\t', lineterminator='\n')
         text = data['Text']
         target = data['Class']
-        
         train_matrix = self._tf_vectorizer.fit_transform(text.values.astype('U')).toarray()
-        print (train_matrix.shape) # 445 tweets are represented by 387 features.
+        
+        # print (train_matrix.shape) # 445 tweets are represented by 387 features.
 
         # # splitting data into test and train
         # X_train, X_test, y_train, y_test = train_test_split(train_matrix, target, test_size=0.3, random_state=None)

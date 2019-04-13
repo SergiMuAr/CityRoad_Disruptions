@@ -15,7 +15,6 @@ class Sqlite:
         else:
             try:
                 self.conn = sqlite3.connect(dbfile)
-                print(sqlite3.version)
             except Error as e:
                 print(e)
         return None
@@ -39,7 +38,7 @@ class Sqlite:
         try:
             c = self.conn.cursor()
             c.execute(sql_create)
-            print ("DB opened")
+            self.conn.commit()
         except Error as e:
             print(e)
 
@@ -59,21 +58,37 @@ class Sqlite:
         try:
             c = self.conn.cursor()
             c.execute(sql_create)
-            print ("DB opened")
+            self.conn.commit()
+
         except Error as e:
             print(e)            
 
-    def insert_row (self, model):
+    def insert_model (self, model):
         sql = ''' INSERT INTO models(tweet,latitude,longitude)
                 VALUES(?,?,?) '''
         cur = self.conn.cursor()
         cur.execute(sql, model)
+        self.conn.commit()
+        return cur.lastrowid
+    
+    def insert_stat (self, stat):
+        sql = ''' INSERT INTO stats(tweet,isTI,isGob,isInd,isGeo)
+                VALUES(?,?,?,?,?) '''
+        cur = self.conn.cursor()
+        cur.execute(sql, stat)
+        self.conn.commit()
         return cur.lastrowid
 
-    def selectAll (self):
+    def selectGeoloc (self):
         cur = self.conn.cursor()
-        cur.execute("SELECT * FROM models")
+        cur.execute("SELECT * FROM models WHERE latitude IS NOT NULL AND longitude IS NOT NULL")
 
+        rows = cur.fetchall()
+        return rows
+    
+    def selectStats (self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM stats")
         rows = cur.fetchall()
         return rows
 
