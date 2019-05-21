@@ -1,8 +1,0 @@
-[2019-03-27 02:04:38,626] INFO The cleaning for partition dataStream2-0 is aborted and paused (kafka.log.LogCleaner)
-[2019-03-27 02:04:38,627] INFO The cleaning for partition dataStream2-0 is aborted (kafka.log.LogCleaner)
-[2019-03-27 02:07:08,423] INFO The cleaning for partition dataStream2-0 is aborted and paused (kafka.log.LogCleaner)
-[2019-03-27 02:07:08,423] INFO The cleaning for partition dataStream2-0 is aborted (kafka.log.LogCleaner)
-[2019-03-27 02:21:55,602] INFO Shutting down the log cleaner. (kafka.log.LogCleaner)
-[2019-03-27 02:21:55,603] INFO [kafka-log-cleaner-thread-0]: Shutting down (kafka.log.LogCleaner)
-[2019-03-27 02:21:55,603] INFO [kafka-log-cleaner-thread-0]: Stopped (kafka.log.LogCleaner)
-[2019-03-27 02:21:55,603] INFO [kafka-log-cleaner-thread-0]: Shutdown completed (kafka.log.LogCleaner)

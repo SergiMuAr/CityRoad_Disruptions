@@ -7,7 +7,7 @@ config = configparser.ConfigParser()
 config.read('/home/sergi/Documents/config.ini')
 auth = tweepy.OAuthHandler(config['api.keys']['TWITTER_CONSUMER_KEY'], config['api.keys']['TWITTER_CONSUMER_SECRET'])
 auth.set_access_token(config['api.keys']['TWITTER_AUTH_TOKEN_KEY'], config['api.keys']['TWITTER_AUTH_SECRET'])
-api = tweepy.API(auth)
+api = tweepy.API(auth, wait_on_rate_limit=True)
 
 print (api)
 #override tweepy.StreamListener to add logic to on_status

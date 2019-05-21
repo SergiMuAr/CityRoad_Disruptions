@@ -4,8 +4,12 @@ import nltk
 import re
 import pandas as pd
 from nltk.tokenize.toktok import ToktokTokenizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
 class NLP:
+    def __init__(self):
+        self.tf_vectorizer = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2))
+
     def prepareToClf (self,text):
         txt = str(text)
         # Tokenize tweets. Word splitting.
@@ -33,9 +37,25 @@ class NLP:
 
         import unidecode
         unaccented_string = unidecode.unidecode(','.join(words))
-        return unaccented_string
+        return self.tf_vectorizer.transform([unaccented_string]).toarray()
+
 
     def prepareToVisualize(self,tweet):
-        row = re.sub(r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b', '', ''.join(tweet), flags=re.MULTILINE)
-        row = row.replace("\n", "")
-        return row
+        exclusionList = [r'(https|http)?:\/\/(\w|\.|\/|\?|\=|\&|\%)*\b','-&gt', "'"]
+        exclusions = '|'.join(exclusionList)
+        txt = re.sub(exclusions, '', ''.join(tweet).rstrip(), flags=re.MULTILINE)
+        return txt
+    
+    def tfidf(self):
+        data = pd.read_csv('DataSet/preprocessed.csv', sep = '\t', lineterminator='\n')
+        text = data['Text']
+        target = data['Class']
+        train_matrix = self.tf_vectorizer.fit_transform(text.values.astype('U')).toarray()
+        return train_matrix, target
+# nlp = NLP()
+# print (nlp.prepareToClf("""🚗Cues als principals accessos a BCN. Pel nord: 
+# ➡️C-58 Terrassa Est-Badia/Montcada -> BCN
+# Montcada-Ripollet -> Terrassa
+# ➡️C-16 peatge-boca nord Túnel Vallvidrera 
+# ➡️C-31 nord a Badalona  
+# #equipviari"""))

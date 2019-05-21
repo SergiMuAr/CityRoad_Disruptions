@@ -1,0 +1,15 @@
+Start zookeeper
+bin/zookeeper-server-start.sh config/zookeeper.properties
+Start kafka Server
+bin/kafka-server-start.sh config/server.properties
+
+Create Topic "Test"
+kafka_2.11-1.1.0 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+List topics
+kafka_2.11-1.1.0 bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+pyreverse -S ~/CityRoad_Disruptions/*.py
+dot -Tpdf classes.dot -o classes.pdf
+dot -Tpdf packages.dot -o packages.pdf
+evince classes.pdf

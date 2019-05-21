@@ -18,25 +18,13 @@ class MyStreamListener(tweepy.StreamListener):
 
     def on_status(self, status):
         import unidecode
-        # print (status._json['retweeted_status']['extended_tweet']['full_text'])
-        # text = unidecode.unidecode(status._json['retweeted_status']['extended_tweet']['full_text'])
-        if 'retweeted_status' in status._json:
-            if 'extended_tweet' in status._json['retweeted_status']:
-                text = status._json['retweeted_status']['extended_tweet']['full_text']
-            else:
-                text = status._json['retweeted_status']['text']
-        else:
+        if 'retweeted_status' not in status._json:
             if 'extended_tweet' in status._json:
                 text = status._json['extended_tweet']['full_text']
             else: 
                 text = unidecode.unidecode(status.text)
-        
-        self.counter = self.counter + 1
-        print (self.counter)
-        print (status._json['user']['id_str'], text)
-        self.kafka_producer.publish_message("dataStream2", status._json['user']['id_str'], text)
-        # self.publish_message(self.kafka_producer, 'dataStream2', 'tweet', text)
-
+            print ("Tweet detectat: ",text)
+            self.kafka_producer.publish_message("dataStream2", status._json['user']['id_str'], text)
         
     def on_timeout(self):
         print ('Timeout...')

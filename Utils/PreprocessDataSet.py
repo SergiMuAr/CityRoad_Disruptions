@@ -4,10 +4,9 @@ import nltk
 import re
 import pandas as pd
 from nltk.tokenize.toktok import ToktokTokenizer
-from Lemmatizer import *
 
-def preprocess (dataSet):
-    data = pd.read_csv(''.join(['DataSet/', dataSet]), sep = '\t', lineterminator='\n')
+def preprocess ():
+    data = pd.read_csv('/home/sergi/CityRoad_Disruptions/DataSet/trainingDataSet.csv', sep = '\t', lineterminator='\n')
     for index, row in data.iterrows():
         txt = row['Text']
         # Tokenize tweets. Word splitting.
@@ -35,8 +34,10 @@ def preprocess (dataSet):
 
         import unidecode
         unaccented_string = unidecode.unidecode(','.join(words))
-        data['Text'][index] = unaccented_string
+        # data['Text'][index] = unaccented_string
+        data.iloc[index, 0] = unaccented_string
         
-    data.to_csv('DataSet/lemmatized.csv', sep='\t')
+    data.to_csv('/home/sergi/CityRoad_Disruptions/DataSet/preprocessed.csv', sep='\t')
 
-preprocess("trainingDataSet.csv")
+preprocess()
+print("Work Done!")

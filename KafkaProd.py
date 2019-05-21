@@ -1,4 +1,4 @@
-from kafka import KafkaConsumer, KafkaProducer
+from kafka import KafkaProducer
 
 class KafkaClPr:
 

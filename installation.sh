@@ -10,8 +10,5 @@ sudo pip3 install unidecode
 sudo pip3 install googlemaps
 sudo pip3 install gmplot
 
-#The user needs an api keys file located in the path specified above in the Twitter.py file
+#The user needs gather all necessary api-keys.
 
-#main.py: change path in line 12
-#gmaps.py: change path in lines 7, 9 and 17
-#GeoCoding.py: change path in line 8

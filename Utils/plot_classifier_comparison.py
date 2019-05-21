@@ -51,10 +51,10 @@ names = ["Nearest Neighbors", "Linear SVM", "RBF SVM", "Random Forest", "Neural 
 
 classifiers = [
     KNeighborsClassifier(2),
-    SVC(kernel="linear", C=1),
+    SVC(tol=0.001, shrinking=True, kernel= 'linear', gamma= 'scale', degree= 2, C= 10),
     SVC(gamma=2, C=1),
     RandomForestClassifier(max_depth=5, n_estimators=10, max_features=None),
-    MLPClassifier(alpha=1),
+    MLPClassifier(solver='adam', learning_rate_init=0.001, learning_rate= 'constant', hidden_layer_sizes=(100,), alpha=1, activation='logistic'),
     AdaBoostClassifier(),
     GaussianNB(),
     QuadraticDiscriminantAnalysis()]
@@ -91,7 +91,7 @@ for ds_cnt, ds in enumerate(datasets):
     X, y = ds
     X = StandardScaler().fit_transform(X)
     X_train, X_test, y_train, y_test = \
-        train_test_split(X, y, test_size=.4, random_state=42)
+        train_test_split(X, y, test_size=.3, random_state=42)
 
     x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
     y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
